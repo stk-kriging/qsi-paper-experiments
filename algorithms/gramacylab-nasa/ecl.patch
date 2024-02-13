@@ -1,0 +1,154 @@
+diff --git a/entropy/code/contour_adaptive_design/branin_model.py b/entropy/code/contour_adaptive_design/branin_model.py
+index 8f9f63f..876b726 100644
+--- a/entropy/code/contour_adaptive_design/branin_model.py
++++ b/entropy/code/contour_adaptive_design/branin_model.py
+@@ -8,8 +8,8 @@ class BraninHooModel:
+         X0 = np.copy(X)
+         
+         a = 1
+-        # b = 5.1/(4*np.pi**2)
+-        b = 5/(4*np.pi**2)
++        b = 5.1/(4*np.pi**2)
++        #b = 5/(4*np.pi**2)
+         c = 5/np.pi
+         r = 6
+         s = 10
+diff --git a/entropy/code/contour_adaptive_design/contour_adaptive_design_gp.py b/entropy/code/contour_adaptive_design/contour_adaptive_design_gp.py
+index 66c3322..342385e 100644
+--- a/entropy/code/contour_adaptive_design/contour_adaptive_design_gp.py
++++ b/entropy/code/contour_adaptive_design/contour_adaptive_design_gp.py
+@@ -7,7 +7,7 @@ Created on Wed Dec  9 08:12:26 2020
+ import warnings
+ import numpy as np
+ from sklearn.gaussian_process import GaussianProcessRegressor as GPR
+-
++from extra_utils import reML
+ 
+ 
+ class ContourAdaptiveDesignGP:
+@@ -90,10 +90,10 @@ class ContourAdaptiveDesignGP:
+ 
+ 
+     def _build_new_gp(self, x_new, y_new):
+-        new_gp = GPR(kernel=self._initial_gp.kernel, alpha=self._alpha)
++
+         with warnings.catch_warnings():
+             warnings.simplefilter("ignore")
+-            new_gp.fit(np.vstack((self.X_, x_new)), np.append(self.y_, y_new))
++            new_gp= reML(np.vstack((self.X_, x_new)), np.append(self.y_, y_new))
+ 
+         self.kernel_ = new_gp.kernel_
+         self._set_hyperparameters_from_kernel(new_gp.kernel_)
+diff --git a/entropy/code/eclGP/branin_model.py b/entropy/code/eclGP/branin_model.py
+index 8f9f63f..876b726 100644
+--- a/entropy/code/eclGP/branin_model.py
++++ b/entropy/code/eclGP/branin_model.py
+@@ -8,8 +8,8 @@ class BraninHooModel:
+         X0 = np.copy(X)
+         
+         a = 1
+-        # b = 5.1/(4*np.pi**2)
+-        b = 5/(4*np.pi**2)
++        b = 5.1/(4*np.pi**2)
++        #b = 5/(4*np.pi**2)
+         c = 5/np.pi
+         r = 6
+         s = 10
+diff --git a/entropy/code/eclGP/contour_adaptive_design_gp.py b/entropy/code/eclGP/contour_adaptive_design_gp.py
+index 9230548..ac950dd 100644
+--- a/entropy/code/eclGP/contour_adaptive_design_gp.py
++++ b/entropy/code/eclGP/contour_adaptive_design_gp.py
+@@ -6,6 +6,13 @@ Parent class for GPs used for adaptive design for contour finding.
+ import numpy as np
+ from sklearn.gaussian_process import GaussianProcessRegressor as GPR
+ import warnings
++import os
++import sys
++
++fileDir = os.path.dirname(os.path.abspath(__file__))
++sys.path.append(fileDir)
++
++from extra_utils import reML
+ 
+ 
+ class ContourAdaptiveDesignGP:
+@@ -88,10 +95,7 @@ class ContourAdaptiveDesignGP:
+ 
+ 
+     def _build_new_gp(self, x_new, y_new):
+-        new_gp = GPR(kernel=self._initial_gp.kernel, alpha=self._alpha)
+-        with warnings.catch_warnings():
+-            warnings.simplefilter("ignore")
+-            new_gp.fit(np.vstack((self.X_, x_new)), np.append(self.y_, y_new))
++        new_gp = reML(np.vstack((self.X_, x_new)), np.append(self.y_, y_new))
+ 
+         self.kernel_ = new_gp.kernel_
+         self._set_hyperparameters_from_kernel(new_gp.kernel_)
+@@ -139,6 +143,9 @@ class ContourAdaptiveDesignGP:
+         self._lengthscale = \
+             [value for key, value in kernel_params.items() \
+              if 'length_scale' in key][0]
++        self._nu = \
++            [value for key, value in kernel_params.items() \
++            if 'nu' in key][0]
+         self._constant_value = \
+             [value for key, value in kernel_params.items() \
+              if 'constant_value' in key][0]
+diff --git a/entropy/code/eclGP/eclGP.py b/entropy/code/eclGP/eclGP.py
+index 23e7245..7d7a38b 100644
+--- a/entropy/code/eclGP/eclGP.py
++++ b/entropy/code/eclGP/eclGP.py
+@@ -5,6 +5,11 @@ contour locator (ECL).
+ 
+ @author:    D. Austin Cole <david.a.cole@nasa.gov>
+ """
++import os
++import sys
++fileDir = os.path.dirname(os.path.abspath(__file__))
++sourcePath = os.path.join(fileDir, '../')
++sys.path.append(sourcePath)
+ 
+ from inspect import isfunction
+ import numpy as np
+@@ -16,7 +21,7 @@ import sys
+ from tqdm import tqdm
+ import warnings
+ 
+-from eclGP import ContourAdaptiveDesignGP
++from contour_adaptive_design_gp import ContourAdaptiveDesignGP
+ 
+ 
+ class EntropyContourLocatorGP(ContourAdaptiveDesignGP):
+diff --git a/entropy/code/eclGP/extra_utils.py b/entropy/code/eclGP/extra_utils.py
+new file mode 100644
+index 0000000..ae87f7b
+--- /dev/null
++++ b/entropy/code/eclGP/extra_utils.py
+@@ -0,0 +1,27 @@
++import numpy as np
++from sklearn.gaussian_process import GaussianProcessRegressor as GPR
++from sklearn.gaussian_process.kernels import Matern
++import time
++
++def reML(X0, Y0):
++	dim = X0.shape[1]
++	kernel_cand = 1.0 * Matern(nu=np.inf, length_scale= np.repeat(.5, dim), length_scale_bounds=(1e-4, 1e4))
++	gp = GPR(kernel=kernel_cand, alpha = 10**-6)
++	gp.fit(X0, Y0)
++
++	param = gp.kernel_.get_params()
++	likelihood = gp.log_marginal_likelihood()
++
++	cov = 0
++	for j in [1/2, 3/2, 5/2]:
++		cov = cov + 1
++		kernel_cand = 1.0 * Matern(nu=j, length_scale= np.repeat(.5, dim), length_scale_bounds=(1e-4, 1e5))
++		gp_cand = GPR(kernel=kernel_cand, alpha = 10**-6)
++		gp_cand.fit(X0, Y0)
++
++		if gp_cand.log_marginal_likelihood() > likelihood:
++			param = gp_cand.kernel_.get_params()
++			likelihood = gp_cand.log_marginal_likelihood()
++			gp = gp_cand
++
++	return gp
