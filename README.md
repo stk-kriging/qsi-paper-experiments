@@ -32,13 +32,17 @@ The scripts whose name contain `results_computation` allows to extract the propo
 
 ## About ECL (Cole et al. 2023)
 
-In order to launch the ECL experiments, it is necessary to apply a patch the initial repository. This can be done automatically by executing the script `APPLY_ECL_PATCH.sh`.
+In order to launch the ECL experiments, it is necessary to apply the patch
 
-Or more generally, on unix-based OS, by executing the following commands
-```
-cd algorithms/gramacylab-nasa/repo
-git apply ../ecl.patch .
-``` 
+    algorithms/gramacylab-nasa/ecl.patch
+	
+using `git am`, in the cloned repository located in
 
-All the package requirements for ECL can be found in `ecl_requirements.txt`.
+    algorithms/gramacylab-nasa/repo
+
+This can be done automatically, on unix-like systems, using the script
+
+    algorithms/gramacylab-nasa/apply-patch.sh
+
+Package requirements for ECL can be found in `requirements_ECL.txt`.
 
