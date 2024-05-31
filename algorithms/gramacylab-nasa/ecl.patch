@@ -1,3 +1,18 @@
+From 43ab3e70f33688d4a8691e278c70bfd4a9d999ce Mon Sep 17 00:00:00 2001
+From: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr>
+Date: Fri, 31 May 2024 17:34:39 +0200
+Subject: [PATCH] Modifications for QSI paper experiments
+
+---
+ .../contour_adaptive_design/branin_model.py   |  4 +--
+ .../contour_adaptive_design_gp.py             |  6 ++---
+ entropy/code/eclGP/branin_model.py            |  4 +--
+ .../code/eclGP/contour_adaptive_design_gp.py  | 15 ++++++++---
+ entropy/code/eclGP/eclGP.py                   |  7 ++++-
+ entropy/code/eclGP/extra_utils.py             | 27 +++++++++++++++++++
+ 6 files changed, 51 insertions(+), 12 deletions(-)
+ create mode 100644 entropy/code/eclGP/extra_utils.py
+
 diff --git a/entropy/code/contour_adaptive_design/branin_model.py b/entropy/code/contour_adaptive_design/branin_model.py
 index 8f9f63f..876b726 100644
 --- a/entropy/code/contour_adaptive_design/branin_model.py
@@ -14,7 +29,7 @@ index 8f9f63f..876b726 100644
          r = 6
          s = 10
 diff --git a/entropy/code/contour_adaptive_design/contour_adaptive_design_gp.py b/entropy/code/contour_adaptive_design/contour_adaptive_design_gp.py
-index 66c3322..342385e 100644
+index 66c3322..fd3dd65 100644
 --- a/entropy/code/contour_adaptive_design/contour_adaptive_design_gp.py
 +++ b/entropy/code/contour_adaptive_design/contour_adaptive_design_gp.py
 @@ -7,7 +7,7 @@ Created on Wed Dec  9 08:12:26 2020
@@ -121,7 +136,7 @@ index 23e7245..7d7a38b 100644
  class EntropyContourLocatorGP(ContourAdaptiveDesignGP):
 diff --git a/entropy/code/eclGP/extra_utils.py b/entropy/code/eclGP/extra_utils.py
 new file mode 100644
-index 0000000..ae87f7b
+index 0000000..873db66
 --- /dev/null
 +++ b/entropy/code/eclGP/extra_utils.py
 @@ -0,0 +1,27 @@
@@ -152,3 +167,6 @@ index 0000000..ae87f7b
 +			gp = gp_cand
 +
 +	return gp
+-- 
+2.39.2
+
