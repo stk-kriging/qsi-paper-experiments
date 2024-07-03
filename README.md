@@ -1,5 +1,7 @@
 # qsi-paper-experiments
 
+This repository contains data and scripts used for the numerical experiments of `https://arxiv.org/abs/2211.01008`.
+
 ## How to clone this repository
 
 This repository contains [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
