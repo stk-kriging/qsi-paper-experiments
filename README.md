@@ -26,7 +26,7 @@ List of the submodules used by this project:
 
 All the results used or displayed in the article and its supplementary materials (sequential/initial designs, estimated covariance parameters, graphs...) and the associated data are saved in the folder `data/`. The scripts located at the root of this project have the following utilities:
 
-`DEMO_QSI.m` display a demonstration of the QSI-SUR strategy on the synthetic function `f_1`, by generating a random initial design and displaying, every 3 steps, the points chosen by the sampling criterion.
+`DEMO_QSI.m` displays a demonstration of the QSI-SUR strategy on the synthetic function `f_1`, by generating a random initial design and displaying, every 3 steps, the points chosen by the sampling criterion.
 
 Three scripts allow to reproduce (totally or partially) the experiments and the associated data:
 - `matlab_experiments.m` constructs sequential designs using the QSI-SUR, Joint-SUR, Ranjan, max. misclassification and random satrategies.
