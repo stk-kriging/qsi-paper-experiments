@@ -1,5 +1,5 @@
 [submodule "algorithms/stk-contrib-qsi/contrib-qsi"]
-	path = algorithms/stk-contrib-qsi/contrib-qsi
+	path = algorithms/stk-contrib-qsi
 	url = https://github.com/stk-kriging/contrib-qsi.git
 [submodule "algorithms/gramacylab-nasa/repo"]
 	path = algorithms/gramacylab-nasa/repo

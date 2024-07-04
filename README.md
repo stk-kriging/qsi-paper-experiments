@@ -20,7 +20,7 @@ git submodule update --init
 ```
 
 List of the submodules used by this project:
- * `algorithms/stk-contrib-qsi/contrib-qsi`: Matlab code for the proposed algorithm (QSI-SUR) and some competitors.
+ * `algorithms/stk-contrib-qsi`: Matlab code for the proposed algorithm (QSI-SUR) and some competitors.
  * `algorithms/gramacylab-nasa/repo`: Python code for the ECL algorithm of (Cole et al, 2023).
 
 ## Experiments and results reproduction
@@ -37,7 +37,7 @@ Three scripts allow to reproduce (totally or partially) the experiments and the 
 By default, these scripts produces results for 100 runs, without using parallel computing, for the synthethic test function `f_1`. The full reproduction of the experiments used in the paper can take a (very) long time, but this can be alleviate 
 by reducing the number of runs, activating parallel computing, or modifying the configuration file of the considered test case (see next section). 
 
-More details on the sub-functions involved in thoses scripts can be found in `algorithms/stk-contrib-qsi/contrib-qsi/README.md`.
+More details on the sub-functions involved in thoses scripts can be found in `algorithms/stk-contrib-qsi/README.md`.
 
 The figures displayed in the article can be reproduce, using the data stored in `data/`, by launching the scripts:
 - `Figure_i.m` (with i = 1, 3, 6, 7) for the corresponding figure.
@@ -56,10 +56,10 @@ Each test `function` (and associated QSI problem) is composed and described by s
 - `function_struct.m`, describing the problem (threshold, critical region, input spaces...)
 - `function_config.m`, a configuration file for the different matlab-implemented strategies (number of steps, size of the integration grid, number of candidates points...).
 
-All the `function`-related files are located in `algorithms/stk-contrib-qsi/contrib-qsi/test_functions`, except for the base function of the Volcano case (`testcases/volcano`) and the python implementation
+All the `function`-related files are located in `algorithms/stk-contrib-qsi/test_functions`, except for the base function of the Volcano case (`testcases/volcano`) and the python implementation
 of the functions (`testcases/python`).
 
-More details can be found in `algorithms/stk-contrib-qsi/contrib-qsi/README.md`.
+More details can be found in `algorithms/stk-contrib-qsi/README.md`.
 
 ## About ECL (Cole et al. 2023)
 
