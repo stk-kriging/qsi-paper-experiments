@@ -2,6 +2,7 @@
 
 This repository contains data and scripts used for the numerical experiments of `https://arxiv.org/abs/2211.01008`.
 
+
 ## How to clone this repository
 
 This repository contains [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
@@ -23,47 +24,89 @@ List of the submodules used by this project:
  * `algorithms/stk-contrib-qsi`: Matlab code for the proposed algorithm (QSI-SUR) and some competitors.
  * `algorithms/gramacylab-nasa/repo`: Python code for the ECL algorithm of (Cole et al, 2023).
 
-## Experiments and results reproduction
 
-All the results used or displayed in the article and its supplementary materials (sequential/initial designs, estimated covariance parameters, graphs...) and the associated data are saved in the folder `data/`. The scripts located at the root of this project have the following utilities:
+## Reproducing the figures and experiments from the article
 
-`DEMO_QSI.m` displays a demonstration of the QSI-SUR strategy on the synthetic function `f_1`, by generating a random initial design and displaying, every 3 steps, the points chosen by the sampling criterion.
+### Saved data
 
-Three scripts allow to reproduce (totally or partially) the experiments and the associated data:
-- `matlab_experiments.m` constructs sequential designs using the QSI-SUR, Joint-SUR, Ranjan, max. misclassification and random satrategies.
-- `ecl_experiments.m` constructs sequential designs using the ECL strategy.
-- `results_computation.m` computes the stepwise proportion of misclassified points for all the competitor strategies `data/results`.
+All the results used or displayed in the article and its supplementary
+materials (sequential/initial designs, estimated covariance
+parameters, graphs...) and the associated data are saved in the `data`
+directory.
 
-By default, these scripts produces results for 100 runs, without using parallel computing, for the synthethic test function `f_1`. The full reproduction of the experiments used in the paper can take a (very) long time, but this can be alleviate 
-by reducing the number of runs, activating parallel computing, or modifying the configuration file of the considered test case (see next section). 
+### Demonstration script
 
-More details on the sub-functions involved in thoses scripts can be found in `algorithms/stk-contrib-qsi/README.md`.
+The script `scripts/DEMO_QSI.m` provides a demonstration of the
+QSI-SUR strategy on the synthetic function `f_1`, by generating a
+random initial design and displaying, every 3 steps, the points chosen
+by the sampling criterion.
 
-The figures displayed in the article can be reproduce, using the data stored in `data/`, by launching the scripts:
+### How to reproduce the figures from saved data
+
+The figures displayed in the article can be reproduced, using the data
+stored in `data/`, by launching the scripts in `scripts/figures`:
 - `Figure_i.m` (with i = 1, 3, 6, 7) for the corresponding figure.
-- `Figures_convergence.m` for the figures 4, 5, 9 and the ones displayed in the supplementary material, for a given function (by default, `f_1`).
+- `Figures_convergence.m` for the figures 4, 5, 9 and the ones
+  displayed in the supplementary material, for a given function (by
+  default, `f_1`).
+
+### How to reproduce the benchmark results from scratch
+
+Three scripts, located in `scripts/benchmark`, allow to reproduce the
+experiments and the associated data:
+- `matlab_experiments.m` constructs sequential designs using the
+  QSI-SUR, Joint-SUR, Ranjan, max. misclassification and random
+  satrategies.
+- `ecl_experiments.py` constructs sequential designs using the ECL
+  strategy.
+- `results_computation.m` computes the proportion of misclassified
+  points at each step for all the competitor strategies and saves the
+  results in `data/results`.
+
+By default, these scripts produces results for 100 runs, without using
+parallel computing, for the synthethic test function `f_1`. The full
+reproduction of the experiments used in the paper can take a (very)
+long time, but this can be alleviate by reducing the number of runs,
+activating parallel computing, or modifying the configuration file of
+the considered test case (see next section).
+
+More details on the sub-functions involved in thoses scripts can be
+found in `algorithms/stk-contrib-qsi/README.md`.
+
 
 ## Test functions
-The test functions are named differently in the paper and in this project. The correspondance is as follows:
+
+The test functions are named differently in the paper and in this
+project. The correspondance is as follows:
 - `f_1` = `branin_mod`.
 - `f_2` = `double_camel`.
 - `f_3` = `hart4`.
 - `Volcano` = `volcano`.
 
-Each test `function` (and associated QSI problem) is composed and described by several files:
-- `function.m` or `function.py`, the associated function either coded in matlab or python.
-- `function_s_trnsf.m`, the inverse mapping associated to the probability distribution on the uncertain inputs.
-- `function_struct.m`, describing the problem (threshold, critical region, input spaces...)
-- `function_config.m`, a configuration file for the different matlab-implemented strategies (number of steps, size of the integration grid, number of candidates points...).
+Each test `function` (and associated QSI problem) is composed and
+described by several files:
+- `function.m` or `function.py`, the associated function either coded
+  in matlab or python.
+- `function_s_trnsf.m`, the inverse mapping associated to the
+  probability distribution on the uncertain inputs.
+- `function_struct.m`, describing the problem (threshold, critical
+  region, input spaces...)
+- `function_config.m`, a configuration file for the different
+  matlab-implemented strategies (number of steps, size of the
+  integration grid, number of candidates points...).
 
-All the `function`-related files are located in `algorithms/stk-contrib-qsi/test_functions`, except for the base function of the Volcano case (`testcases/volcano`) and the python implementation
-of the functions (`testcases/python`).
+All the `function`-related files are located in
+`algorithms/stk-contrib-qsi/test_functions`, except for the base
+function of the Volcano case (`testcases/volcano`) and the python
+implementation of the functions (`testcases/python`).
 
 More details can be found in `algorithms/stk-contrib-qsi/README.md`.
 
+
 ## About ECL (Cole et al. 2023)
 
-In order to launch the ECL-related experiments, it is necessary to apply the patch
+In order to launch the ECL-related experiments, it is necessary to
+apply the patch
 
     algorithms/gramacylab-nasa/ecl.patch
 	
@@ -82,6 +125,7 @@ Package requirements for ECL can be found in
 
 ## Acknowledgements
 
-The authors are grateful to Valérie Cayol and Rodolphe Le Riche for sharing their R implementation of the Mogi model used for the Volcano test case.
-This work has been funded by the French National Research Agency (ANR), in the context of the project SAMOURAI (ANR-20-CE46-0013).
-
+The authors are grateful to Valérie Cayol and Rodolphe Le Riche for
+sharing their R implementation of the Mogi model used for the Volcano
+test case.  This work has been funded by the French National Research
+Agency (ANR), in the context of the project SAMOURAI (ANR-20-CE46-0013).
