@@ -12,6 +12,5 @@ root = fileparts (mfilename ('fullpath'));
 % (this step also clones & initializes STK 2.8.1 if needed)
 run (fullfile (root, 'algorithms', 'stk-contrib-qsi', 'startup.m'));
 
-addpath (fullfile (root, 'sys'));
 addpath (fullfile (root, 'testcases', 'volcano-case'));
 addpath (fullfile (root, 'misc'));
