@@ -20,7 +20,6 @@ git submodule update --init
 ```
 
 List of the submodules used by this project:
- * `algorithms/stk-contrib-qsi/stk-2.8.1`: STK toolbox, version 2.8.1.
  * `algorithms/stk-contrib-qsi/contrib-qsi`: Matlab code for the proposed algorithm (QSI-SUR) and some competitors.
  * `algorithms/gramacylab-nasa/repo`: Python code for the ECL algorithm of (Cole et al, 2023).
 

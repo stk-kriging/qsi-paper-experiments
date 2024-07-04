@@ -1,6 +1,3 @@
-[submodule "algorithms/stk-contrib-qsi/stk-2.8.1"]
-	path = algorithms/stk-contrib-qsi/stk-2.8.1
-	url = https://github.com/stk-kriging/stk.git
 [submodule "algorithms/stk-contrib-qsi/contrib-qsi"]
 	path = algorithms/stk-contrib-qsi/contrib-qsi
 	url = https://github.com/stk-kriging/contrib-qsi.git
