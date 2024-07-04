@@ -1,4 +1,4 @@
-%Construct convergence graphs for the different competitors.
+% Construct convergence graphs for the different competitors.
 
 % Copyright Notice
 %
@@ -6,18 +6,19 @@
 %
 %    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
 
-here = fileparts(mfilename('fullpath'));
+here = fileparts (mfilename ('fullpath'));
+data_dir = fullfile (here, '..', '..', 'data');
 
-SAVE = 0; %SAVE = 1 to save figures in data/results/figures.
-nb_runs = 100; %Number of runs to query.
+SAVE = 0;       % SAVE = 1 to save figures in data/results/figures.
+nb_runs = 100;  % Number of runs to query.
 
-%Problem structure and configuration.
-prm = branin_mod_struct();
-config = branin_mod_config();
+% Problem structure and configuration.
+prm = branin_mod_struct ();
+config = branin_mod_config ();
 
-disp(sprintf("Plotting convergence graphs for %s", prm.name))
+disp (sprintf ("Plotting convergence graphs for %s", prm.name)) %#ok<DSPSP>
 
-%Methods to query and plotting options (color, names...).
+% Methods to query and plotting options (color, names...).
 methods = ["random", "Ranjan", "misclassification", "ecl", "joint_m", "QSI_m"];
 name = ["random", "Ranjan", "misclassification", "ECL", "Joint-SUR", "QSI-SUR"];
 type = [":", "-", "-", "-", "-", "-"];
@@ -44,7 +45,7 @@ for j = 1:size(methods,2)
     for it = 1:nb_runs
 
         filename = sprintf("dev_%s_%s_%d.csv", algo, prm.name, it);
-        file = readmatrix(fullfile(here, 'data/results/deviations', filename));
+        file = readmatrix(fullfile(data_dir, 'results/deviations', filename));
         file = file(:,AXfile);
 
         dev = [dev; file];
@@ -59,7 +60,7 @@ for j = 1:size(methods,2)
     for it = 1:nb_runs
 
         filename = sprintf("dev_%s_%s_%d.csv", algo, prm.name, it);
-        file = readmatrix(fullfile(here, 'data/results/deviations', filename));
+        file = readmatrix(fullfile(data_dir, 'results/deviations', filename));
         file = file(:,AXfile);
 
         dev = [dev; file];
@@ -77,8 +78,8 @@ for j = 1:size(methods,2)
     hold on
     title(name(j) + " (sample paths)","Interpreter","none")
     if SAVE == 1
-        saveas(gcf, here+"/data/results/graphs/trajs_"+prm.name+"_"+algo, 'epsc')
-        saveas(gcf, here+"/data/results/graphs/trajs_"+prm.name+"_"+algo)
+        saveas(gcf, data_dir+"/results/graphs/trajs_"+prm.name+"_"+algo, 'epsc')
+        saveas(gcf, data_dir+"/results/graphs/trajs_"+prm.name+"_"+algo)
     end
 
 end
@@ -95,7 +96,7 @@ for j = 1:size(methods,2)
     for it = 1:nb_runs
 
         filename = sprintf("dev_%s_%s_%d.csv", algo, prm.name, it);
-        file = readmatrix(fullfile(here, 'data/results/deviations', filename));
+        file = readmatrix(fullfile(data_dir, 'results/deviations', filename));
         file = file(:,AXfile);
 
         dev = [dev; file];
@@ -128,8 +129,8 @@ for j = 1:size(methods,2)
     hold on
     title(name(j),"Interpreter","none")
     if SAVE == 1
-        saveas(gcf,here+"/data/results/graphs/metric_"+prm.name+"_"+algo, 'epsc')
-        saveas(gcf,here+"/data/results/graphs/metric_"+prm.name+"_"+algo)
+        saveas(gcf,data_dir+"/results/graphs/metric_"+prm.name+"_"+algo, 'epsc')
+        saveas(gcf,data_dir+"/results/graphs/metric_"+prm.name+"_"+algo)
     end
 
 
@@ -154,8 +155,8 @@ xlabel("steps")
 ylabel("prop. misclass")
 title("Medians")
 if SAVE == 1
-    saveas(gcf,here+"/data/results/graphs/metric_"+prm.name, 'epsc')
-    saveas(gcf,here+"/data/results/graphs/metric_"+prm.name)
+    saveas(gcf,data_dir+"/results/graphs/metric_"+prm.name, 'epsc')
+    saveas(gcf,data_dir+"/results/graphs/metric_"+prm.name)
 end
 
 %Compare 075
@@ -172,8 +173,8 @@ xlabel("steps")
 ylabel("prop. misclass")
 title("Quantiles (75th)")
 if SAVE == 1
-    saveas(gcf,here+"/data/results/graphs/metric_75_"+prm.name, 'epsc')
-    saveas(gcf,here+"/data/results/graphs/metric_75_"+prm.name)
+    saveas(gcf,data_dir+"/results/graphs/metric_75_"+prm.name, 'epsc')
+    saveas(gcf,data_dir+"/results/graphs/metric_75_"+prm.name)
 end
 
 %Compare 095
@@ -190,7 +191,7 @@ xlabel("steps")
 ylabel("prop. misclass")
 title("Quantiles (95th)")
 if SAVE == 1
-    saveas(gcf,here+"/data/results/graphs/metric_95_"+prm.name, 'epsc')
-    saveas(gcf,here+"/data/results/graphs/metric_95_"+prm.name)
+    saveas(gcf,data_dir+"/results/graphs/metric_95_"+prm.name, 'epsc')
+    saveas(gcf,data_dir+"/results/graphs/metric_95_"+prm.name)
 end
 

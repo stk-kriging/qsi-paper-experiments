@@ -14,3 +14,4 @@ run (fullfile (root, 'algorithms', 'stk-contrib-qsi', 'startup.m'));
 
 addpath (fullfile (root, 'testcases', 'volcano-case'));
 addpath (fullfile (root, 'misc'));
+addpath (genpath (fullfile (root, 'scripts')));

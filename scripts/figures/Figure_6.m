@@ -1,6 +1,5 @@
-% Allows to create sequential graphs representing the obtained DoEs for the different algorithms
-% on the branin_mod function.
-
+% Allows to create sequential graphs representing the obtained DoEs for the
+% different algorithms on the branin_mod function.
 
 % Copyright Notice
 %

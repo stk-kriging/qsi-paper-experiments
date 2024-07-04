@@ -4,12 +4,7 @@ clear all;  close all
 
 PTS_X = 500;
 PTS_S = 500;
-SAVE = 0;
 
-
-here = fileparts(mfilename('fullpath'));
-wid = int64(450);
-hei = int64(0.76*wid);
 dim_tot = prm.dim_x+prm.dim_s;
 if dim_tot > 1
     xf = stk_sampling_regulargrid(PTS_X, 1, prm.BOXx);

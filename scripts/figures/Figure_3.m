@@ -9,14 +9,8 @@
 %    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
 %             Julien Bect <julien.bect@centralesupelec.fr>
 
-filePath = 'data';
-it = 2; %id of the initial doe to use
-
-
 [prm, f, s_trnsf] = branin_mod_struct(); %loading function and parameters
 config = branin_mod_config();
-here = fileparts(mfilename('fullpath'));
-
 
 dim_tot = prm.dim_x+prm.dim_s;
 
@@ -27,8 +21,6 @@ if prm.M == 1
 end
 
 %Initial design
-file_grid = sprintf ('doe_init_%s_%d_init.csv', prm.name, it);
-%di = readmatrix(fullfile(here, filePath, 'doe_init', file_grid));
 di = stk_sampling_maximinlhs(20, 2, prm.BOX);
 zi = f(di);
 
