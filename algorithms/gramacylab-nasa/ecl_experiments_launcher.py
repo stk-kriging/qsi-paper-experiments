@@ -18,9 +18,9 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-def ecl_experiments_launcher(name):
+def ecl_experiments_launcher(name, nb_runs):
 
-	MC_REPS = 100
+	MC_REPS = nb_runs;
 
 	if name == "branin_mod":
 		from branin_mod import branin_mod_ecl

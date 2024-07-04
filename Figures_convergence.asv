@@ -1,16 +1,21 @@
-prm = branin_mod_struct();
-config = branin_mod_config();
+%Construct convergence graphs for the different competitors.
+
+% Copyright Notice
+%
+% Copyright (C) 2024 CentraleSupelec
+%
+%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
+
+
+prm = volcano_struct();
+config = volcano_config();
 
 methods = ["random", "Ranjan", "misclassification", "ecl", "joint_m", "QSI_m"];
-%methods = ["QSI_m", "QSI_v", "QSI_e"];
-%name = ["miscbased", "varbased", "entrbased"];
-name = ["random", "Ranjan", "misclassification", "ECL", "Jointsur", "Qsisur"];
+name = ["random", "Ranjan", "misclassification", "ECL", "Joint-SUR", "QSI-SUR"];
 type = [":", "-", "-", "-", "-", "-"];
-%type = ["-", "-", "-"];
-%col = ["red", "yellow", "blue"];
 col = ["black", "#EDB120", "#7E2F8E", "#77AC30", "#0072BD", "#A2142F"];
 
-nb_run = 100;
+nb_runs = 100;
 
 wid = int64(450);
 hei = int64(0.76*wid);
@@ -31,7 +36,7 @@ for j = 1:size(methods,2)
     dev = [];
     algo = methods(j);
 
-    for it = 1:nb_run
+    for it = 1:nb_runs
 
         filename = sprintf("dev_%s_%s_%d.csv", algo, prm.name, it);
         file = readmatrix(fullfile(here, '../data/results/deviations', filename));
@@ -46,18 +51,17 @@ for j = 1:size(methods,2)
     dev = [];
     algo = methods(j);
 
-    for it = 1:nb_run
+    for it = 1:nb_runs
 
         filename = sprintf("dev_%s_%s_%d.csv", algo, prm.name, it);
         file = readmatrix(fullfile(here, '../data/results/deviations', filename));
         file = file(:,AXfile);
 
         dev = [dev; file];
-        %max_plot = max([max_plot, max(dev,[],"all")],[], "all");
     end
 
-    figure('Visible','off','Position', [10 10 wid hei], 'Renderer','painters')
-    for it = 1:nb_run
+    figure('Position', [10 10 wid hei], 'Renderer','painters')
+    for it = 1:nb_runs
         plot(AX, dev(it,:))
         yticks(linspace(0, max_plot*1.05, 10))
         hold on
@@ -70,6 +74,7 @@ for j = 1:size(methods,2)
     hold on
     title(name(j),"Interpreter","none")
     saveas(gcf, here+"/../data/results/graphs/trajs_"+prm.name+"_"+algo, 'epsc')
+    saveas(gcf, here+"/../data/results/graphs/trajs_"+prm.name+"_"+algo)
 
 end
 
@@ -99,19 +104,8 @@ for j = 1:size(methods,2)
     dev_1 = max(dev,[],1);
 
 
-    figure('Visible','off','Position', [10 10 wid hei], 'Renderer','painters')
-    %ylim([0 max(dev_1)])
-    %hold on
+    figure('Position', [10 10 wid hei], 'Renderer','painters')
 
-    %{
-    for j = 1:50
-        plot(0:T,dev(j,:))
-        hold on
-    end
-    %}
-    %patch([AX, fliplr(AX)],[dev_0, fliplr(dev_1)], ...
-    %'black','FaceAlpha',0.2, 'EdgeColor','none','DisplayName','min-max');
-    %hold on
     patch([AX, fliplr(AX)],[dev_010, fliplr(dev_090)], ...
         'black','FaceAlpha',0.3, 'EdgeColor','none','DisplayName','5%-95%');
     hold on
@@ -122,13 +116,13 @@ for j = 1:size(methods,2)
     hold on
     grid on
     ylim([0 max_plot])
-    yticks(0:0.025:max_plot)
     legend('Interpreter','none','FontSize',7)
     xlabel("steps")
     ylabel("prop")
     hold on
     title(name(j),"Interpreter","none")
     saveas(gcf,here+"/../data/results/graphs/metric_"+prm.name+"_"+algo, 'epsc')
+    saveas(gcf,here+"/../data/results/graphs/metric_"+prm.name+"_"+algo)
 
 
 
@@ -139,69 +133,57 @@ for j = 1:size(methods,2)
 end
 
 %Compare median
-figure('Visible','on','Position', [10 10 wid hei], 'Renderer','painters')
+figure('Position', [10 10 wid hei], 'Renderer','painters')
 for m = 1:size(methods,2)
     plot(AX,med_dev(m,:),type(m),'DisplayName',name(m),'LineWidth', 3, 'Color', col(m))
     hold on
 end
 
 ylim([0 1.1*max(med_dev,[],"all")]);
-%yticks(0:0.025:1.1*max(med_dev,[],"all"))
 grid on
 legend('Interpreter','none', 'Location','best','FontSize',7)
 hold on
-%title("Summary "+prm.name+"_comp",'Interpreter','none')
 xlabel("steps")
-ylabel("prop")
-%saveas(gcf,"~/repos/experiments/results/graphs_gen/metric_"+prm.name+"_comp", 'epsc')
+ylabel("prop. misclass")
+title("Medians")
+if SAVE == 1
 saveas(gcf,here+"/../data/results/graphs/metric_"+prm.name, 'epsc')
+saveas(gcf,here+"/../data/results/graphs/metric_"+prm.name)
+end
 
 %Compare 075
-figure('Visible','off','Position', [10 10 wid hei], 'Renderer','painters')
+figure('Position', [10 10 wid hei], 'Renderer','painters')
 for m = 1:size(methods,2)
     plot(AX,med_dev_75(m,:), type(m),'DisplayName',name(m),'LineWidth',3, 'color', col(m))
     hold on
 end
 ylim([0 1.1*max(med_dev_75,[],"all")]);
-ylim([0 1.1*max(med_dev_75,[],"all"))
 grid on
 legend('Interpreter','none', 'Location','best','FontSize',7)
 hold on
-%title("Summary "+prm.name+"_comp",'Interpreter','none')
 xlabel("steps")
-ylabel("prop")
-%saveas(gcf,"~/repos/experiments/results/graphs_gen/metric_75_"+prm.name+"_comp", 'epsc')
+ylabel("prop. misclass")
+title("Quantiles (75th)")
+if SAVE == 1
 saveas(gcf,here+"/../data/results/graphs/metric_75_"+prm.name, 'epsc')
+saveas(gcf,here+"/../data/results/graphs/metric_75_"+prm.name)
+end
 
 %Compare 095
-figure('Visible','off','Position', [10 10 wid hei], 'Renderer','painters')
+figure('Position', [10 10 wid hei], 'Renderer','painters')
 for m = 1:size(methods,2)
     plot(AX,med_dev_95(m,:),type(m),'DisplayName',name(m),'LineWidth',3, 'color', col(m))
     hold on
 end
 ylim([0 1.1*max(med_dev_95,[],"all")]);
-ylim([0 max(med_dev_95,[],"all")])
 grid on
 legend('Interpreter','none', 'Location','best','FontSize',7)
 hold on
-%title("Summary "+prm.name+"_comp",'Interpreter','none')
 xlabel("steps")
-ylabel("prop")
-%saveas(gcf,"~/repos/experiments/results/graphs_gen/metric_95_"+prm.name+"_comp", 'epsc')
+ylabel("prop. misclass")
+title("Quantiles (95th)")
+if SAVE == 1
 saveas(gcf,here+"/../data/results/graphs/metric_95_"+prm.name, 'epsc')
-
-%Compare log-median
-figure('Visible','off','Position', [10 10 wid hei])
-for m = 1:size(methods,2)
-    plot(AX,log(med_dev(m,:)),'-o','DisplayName',methods(m),'LineWidth',1.5)
-    hold on
+saveas(gcf,here+"/../data/results/graphs/metric_95_"+prm.name)
 end
-%ylim([0 1.1*max(log(med_dev),[],"all")]);
-%yticks(0:0.05:1.1*max(log(med_dev),[],"all"))
-legend('Interpreter','none','Location','southwest')
-hold on
-title("Summary "+prm.name+"_comp"+" (log)",'Interpreter','none')
-xlabel("steps")
-ylabel("log(prop)")
-%saveas(gcf,"~/repos/experiments/results/graphs_gen/log_metric_"+prm.name+"_comp", 'epsc')
-%saveas(gcf,"~/repos/experiments/results/graphs_gen/log_metric_"+prm.name+"_comp", 'epsc')
+

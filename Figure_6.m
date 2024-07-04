@@ -9,18 +9,36 @@
 %    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
 
 
+FROM_DATA = 1; %If FROM_DATA == 0, compute the sequential designs.
+
+it = 60; %id of the run to display
+AX = [30]; %steps to show
+
+PTS_DIM = 250;%number of points 
+
+%Names of the files to retrieve.
+name_list = ["QSI_m", "joint_m", "misclassification", "Ranjan"];
+%Titles of the graphs.
+name_graphs = ["QSI-SUR", "Joint-SUR", "misclassification", "Ranjan"];
 
 [prm, f, s_trnsf] = branin_mod_struct();
-config = branin_mod_config();
+conf = @branin_mod_config;
 
-name_list = ["QSI_m"];
-name_graphs = ["QSI"];
+if FROM_DATA == 0
+    struct = @branin_mod_struct;
+    if LIGHT_MODE == 1
+        conf = @branin_mod_config_light;
+    end
+    for it = it_list
+            QSI_SUR(struct, conf, it, 0, '../../../data')
+            joint_SUR(struct, conf, it, '../../../data')
+            misclassification(struct, conf, it, '../../../data')
+            Ranjan(struct, conf, it, '../../../data')
+    end
+end
 
-it_list = 60;
-SAVE = 1;
-visi = 'on';
-PTS_DIM = 100;
-AX = [30];
+config = conf();
+
 
 wid = int64(450);
 hei = int64(0.76*wid);
@@ -37,7 +55,6 @@ for m = 1:size(name_list,2)
 
     trueSet = get_true_quantile_set(zf, PTS_DIM, PTS_DIM, prm.alpha, prm.const);
 
-    for it = it_list
         for T = AX
 
             warning('off','all')
@@ -55,41 +72,25 @@ for m = 1:size(name_list,2)
             Model.param = file_para(T+1, :);
             set = get_expected_quantile_set(Model,df,PTS_DIM, PTS_DIM,file(1:config.pts_init+T,:),f(file(1:config.pts_init+T,:)),prm.const,prm.alpha);
 
-            figure('Position', [10 10 wid hei], 'visible', visi, 'Renderer','painters')
+            figure('Position', [10 10 wid hei], 'visible', 'on', 'Renderer','painters')
             p = pcolor(double(xf), double(sf)', reshape(f(df), PTS_DIM, PTS_DIM)');
             p.EdgeColor = 'none';
 
             hold on
-            contour(double(xf), double(sf)' ,reshape((f(df)<=prm.const(1,2)), PTS_DIM, PTS_DIM)',[1],'black','LineWidth',1);
+            contour(double(xf), double(sf)' ,reshape((f(df)<=prm.const(2,1)), PTS_DIM, PTS_DIM)',[1],'black','LineWidth',1);
             hold on
-            contour(double(xf), double(sf)' ,reshape(((stk_predict(Model,file(1:config.pts_init+T,:),f(file(1:config.pts_init+T,:)),df).mean)<=prm.const(1,2)), PTS_DIM, PTS_DIM)',[1],'red','LineWidth',1);
+            contour(double(xf), double(sf)' ,reshape(((stk_predict(Model,file(1:config.pts_init+T,:),f(file(1:config.pts_init+T,:)),df).mean)<=prm.const(2,1)), PTS_DIM, PTS_DIM)',[1],'red','LineWidth',1);
             hold on
             scatter(file(1:20,1),file(1:20,2),15,'black','filled')
             hold on
             scatter(file(config.pts_init+1:config.pts_init+T,1),file(config.pts_init+1:config.pts_init+T,2),15,'red','filled')
             hold on
-            %text(file(config.pts_init+1:config.pts_init+T,1)+0.1,file(config.pts_init+1:config.pts_init+T,2)+0.1,string(1:T))
-            hold on
             colorbar
             xlabel("\bfX")
             ylabel("\bfS")
             hold on
-            title(name_graphs(m))
-            saveas(gcf,"~/repos/experiments/results/graphs/design_"+prm.name+"_"+name, 'epsc')
-
-            figure('Visible',visi,'Position', [10 10 wid hei], 'Renderer','painters')
-            axis([double(prm.BOXx)', 0, 1])
-            hold on
-            stairs(double(xf),trueSet,'LineWidth',1,'DisplayName','$c(x)$','Color','black')
-            hold on
-            stairs(double(xf),(1/2)*set,'LineWidth',1,'DisplayName','$\frac{1}{2}\hat{c}(x)$','Color','red')
-            hold on
-            xlabel("\bfX")
-            legend('Location','northwest','Interpreter','latex');
-            title(name)
-            saveas(gcf,"data/results/graphs/set_"+prm.name+"_"+name, 'epsc')
+            title(sprintf("%s - n = %d (run %d)", name_graphs(m), T, it))
 
         end
 
     end
-end

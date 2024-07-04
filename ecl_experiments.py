@@ -14,9 +14,11 @@ sys.path.append(sourcePath)
 
 from ecl_experiments_launcher import *
 
+case = "branin_mod";
+nb_runs = 100;
 
-print("Starting Branin_mod experiments")
-ecl_experiments_launcher("branin_mod")
+print("Starting ECL experiments (%s) " %(case))
+ecl_experiments_launcher(case, nb_runs)
 
 print("Starting Double_camel experiments")
 ecl_experiments_launcher("double_camel")

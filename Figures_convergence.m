@@ -1,5 +1,4 @@
-%Construct convergence graphs for the different variants (in terms of
-% uncertainty measures) of the QSI-SUR criterion.
+%Construct convergence graphs for the different competitors.
 
 % Copyright Notice
 %
@@ -7,26 +6,30 @@
 %
 %    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
 
+here = fileparts(mfilename('fullpath'));
 
+SAVE = 0; %SAVE = 1 to save figures in data/results/figures.
+nb_runs = 100; %Number of runs to query.
 
-prm = hart4_struct();
-config = hart4_config();
+%Problem structure and configuration.
+prm = branin_mod_struct();
+config = branin_mod_config();
 
-methods = ["QSI_m", "QSI_v", "QSI_e"];
-name = ["bigbigmiscbased", "bigbigvarbased", "bigbigentrbased"];
-type = ["-", "-", "-"];
-col = ["red", "yellow", "blue"];
+disp(sprintf("Plotting convergence graphs for %s", prm.name))
 
-nb_run = 100;
+%Methods to query and plotting options (color, names...).
+methods = ["random", "Ranjan", "misclassification", "ecl", "joint_m", "QSI_m"];
+name = ["random", "Ranjan", "misclassification", "ECL", "Joint-SUR", "QSI-SUR"];
+type = [":", "-", "-", "-", "-", "-"];
+col = ["black", "#EDB120", "#7E2F8E", "#77AC30", "#0072BD", "#A2142F"];
 
 wid = int64(450);
 hei = int64(0.76*wid);
 
-here = fileparts(mfilename('fullpath'));
 AX = 0:config.axT:config.T;
 AXfile = 1:1:config.T/config.axT+1;
 
-%%Plot all trajs.
+%%Plot all sample paths.
 max_plot = 0;
 med_dev = [];
 med_dev_75 = [];
@@ -38,10 +41,10 @@ for j = 1:size(methods,2)
     dev = [];
     algo = methods(j);
 
-    for it = 1:nb_run
+    for it = 1:nb_runs
 
         filename = sprintf("dev_%s_%s_%d.csv", algo, prm.name, it);
-        file = readmatrix(fullfile(here, '../data/results/deviations', filename));
+        file = readmatrix(fullfile(here, 'data/results/deviations', filename));
         file = file(:,AXfile);
 
         dev = [dev; file];
@@ -53,33 +56,34 @@ for j = 1:size(methods,2)
     dev = [];
     algo = methods(j);
 
-    for it = 1:nb_run
+    for it = 1:nb_runs
 
         filename = sprintf("dev_%s_%s_%d.csv", algo, prm.name, it);
-        file = readmatrix(fullfile(here, '../data/results/deviations', filename));
+        file = readmatrix(fullfile(here, 'data/results/deviations', filename));
         file = file(:,AXfile);
 
         dev = [dev; file];
-        
     end
 
     figure('Position', [10 10 wid hei], 'Renderer','painters')
-    for it = 1:nb_run
+    for it = 1:nb_runs
         plot(AX, dev(it,:))
-        yticks(linspace(0, max_plot*1.05, 10))
         hold on
     end
-    yticks(0:0.025:max_plot)
+    ylim([0 max_plot])
     grid on
     xlabel("steps")
-    ylabel("prop")
+    ylabel("prop. misclass")
     hold on
-    title(name(j),"Interpreter","none")
-    saveas(gcf, here+"/../data/results/graphs/trajs_"+prm.name+"_"+algo+"_comp", 'epsc')
-    saveas(gcf, here+"/../data/results/graphs/trajs_"+prm.name+"_"+algo+"_comp")
+    title(name(j) + " (sample paths)","Interpreter","none")
+    if SAVE == 1
+        saveas(gcf, here+"/data/results/graphs/trajs_"+prm.name+"_"+algo, 'epsc')
+        saveas(gcf, here+"/data/results/graphs/trajs_"+prm.name+"_"+algo)
+    end
 
 end
 
+%Plot strategy individually
 for j = 1:size(methods,2)
 
     algo = methods(j);
@@ -88,10 +92,10 @@ for j = 1:size(methods,2)
     false_neg = [];
     false_pos = [];
 
-    for it = 1:nb_run
+    for it = 1:nb_runs
 
         filename = sprintf("dev_%s_%s_%d.csv", algo, prm.name, it);
-        file = readmatrix(fullfile(here, '../data/results/deviations', filename));
+        file = readmatrix(fullfile(here, 'data/results/deviations', filename));
         file = file(:,AXfile);
 
         dev = [dev; file];
@@ -120,12 +124,13 @@ for j = 1:size(methods,2)
     ylim([0 max_plot])
     legend('Interpreter','none','FontSize',7)
     xlabel("steps")
-    ylabel("prop")
+    ylabel("prop. misclass")
     hold on
     title(name(j),"Interpreter","none")
-    saveas(gcf,here+"/../data/results/graphs/metric_"+prm.name+"_"+algo+"_comp", 'epsc')
-    saveas(gcf,here+"/../data/results/graphs/metric_"+prm.name+"_"+algo+"_comp")
-
+    if SAVE == 1
+        saveas(gcf,here+"/data/results/graphs/metric_"+prm.name+"_"+algo, 'epsc')
+        saveas(gcf,here+"/data/results/graphs/metric_"+prm.name+"_"+algo)
+    end
 
 
     med_dev = [med_dev; dev_05];
@@ -146,9 +151,12 @@ grid on
 legend('Interpreter','none', 'Location','best','FontSize',7)
 hold on
 xlabel("steps")
-ylabel("prop")
-saveas(gcf,here+"/../data/results/graphs/metric_"+prm.name+"_comp", 'epsc')
-saveas(gcf,here+"/../data/results/graphs/metric_"+prm.name+"_comp")
+ylabel("prop. misclass")
+title("Medians")
+if SAVE == 1
+    saveas(gcf,here+"/data/results/graphs/metric_"+prm.name, 'epsc')
+    saveas(gcf,here+"/data/results/graphs/metric_"+prm.name)
+end
 
 %Compare 075
 figure('Position', [10 10 wid hei], 'Renderer','painters')
@@ -161,14 +169,17 @@ grid on
 legend('Interpreter','none', 'Location','best','FontSize',7)
 hold on
 xlabel("steps")
-ylabel("prop")
-saveas(gcf,here+"/../data/results/graphs/metric_75_"+prm.name+"_comp", 'epsc')
-saveas(gcf,here+"/../data/results/graphs/metric_75_"+prm.name+"_comp")
+ylabel("prop. misclass")
+title("Quantiles (75th)")
+if SAVE == 1
+    saveas(gcf,here+"/data/results/graphs/metric_75_"+prm.name, 'epsc')
+    saveas(gcf,here+"/data/results/graphs/metric_75_"+prm.name)
+end
 
 %Compare 095
 figure('Position', [10 10 wid hei], 'Renderer','painters')
 for m = 1:size(methods,2)
-    plot(AX,med_dev_95(m,:),type(m),'DisplayName',name(m),'LineWidth',3, 'color', col(m))
+    plot(AX,med_dev_95(m,:),type(m),'DisplayName', name(m), 'LineWidth', 3, 'color', col(m))
     hold on
 end
 ylim([0 1.1*max(med_dev_95,[],"all")]);
@@ -176,7 +187,10 @@ grid on
 legend('Interpreter','none', 'Location','best','FontSize',7)
 hold on
 xlabel("steps")
-ylabel("prop")
-saveas(gcf,here+"/../data/results/graphs/metric_95_"+prm.name+"_comp", 'epsc')
-saveas(gcf,here+"/../data/results/graphs/metric_95_"+prm.name+"_comp")
+ylabel("prop. misclass")
+title("Quantiles (95th)")
+if SAVE == 1
+    saveas(gcf,here+"/data/results/graphs/metric_95_"+prm.name, 'epsc')
+    saveas(gcf,here+"/data/results/graphs/metric_95_"+prm.name)
+end
 

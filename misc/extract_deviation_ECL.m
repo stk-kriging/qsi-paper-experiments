@@ -8,9 +8,6 @@
 %    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
 
 
-function QSI_SUR(funct_struct, config_func, it, DEMO, filePath)
-
-
 function extract_deviation_ECL(funct_struct, config, it, filePath)
 
 disp("Run number "+int2str(it))
@@ -19,11 +16,12 @@ if nargin < 4
     filePath = '../data';
 end
 
-PTS_X = 2^12;
-PTS_S = 2^10;
 
 [prm, f, s_trnsf] = funct_struct();
 config = config();
+
+PTS_X = config.pts_eval_x;
+PTS_S = config.pts_eval_s;
 
 here = fileparts(mfilename('fullpath'));
 
