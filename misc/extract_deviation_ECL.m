@@ -8,12 +8,13 @@
 %    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
 
 
-function extract_deviation_ECL(funct_struct, config, it, filePath)
+function extract_deviation_ECL(funct_struct, config, it, data_dir)
 
 disp("Run number "+int2str(it))
 
 if nargin < 4
-    filePath = '../data';
+    here = fileparts (mfilename ('fullpath'));
+    data_dir = fullfile (here, '..', 'data');
 end
 
 
@@ -45,7 +46,7 @@ trueSet = get_true_quantile_set(zf, PTS_X, PTS_S, prm.alpha, prm.const);
 
 
     file_design = sprintf('doe_ecl_%s_%d.csv', prm.name, it);
-    design = readmatrix(fullfile(here, filePath, 'results/design', file_design));
+    design = readmatrix(fullfile(data_dir, 'results/design', file_design));
 
     dev = [];
 
@@ -70,7 +71,7 @@ trueSet = get_true_quantile_set(zf, PTS_X, PTS_S, prm.alpha, prm.const);
     end
 
     filename_dev = sprintf('dev_ecl_%s_%d.csv', prm.name, it);
-    writematrix(dev,fullfile(here, filePath, 'results/deviations', filename_dev));
+    writematrix(dev,fullfile(data_dir, 'results/deviations', filename_dev));
 
 end
 

@@ -74,7 +74,7 @@ def ecl_experiments_launcher(name, nb_runs):
 
 	for i in range(MC_REPS):
 
-		X0 = np.loadtxt("data/doe_init/doe_init_"+name+"_" + str(i + 1) +"_init.csv", delimiter=',')
+		X0 = np.loadtxt("../../data/doe_init/doe_init_"+name+"_" + str(i + 1) +"_init.csv", delimiter=',')
 		Y0 = f.predict(X0)
 		## Adaptive design with ECL
 
@@ -88,5 +88,5 @@ def ecl_experiments_launcher(name, nb_runs):
 		np.hstack((eclgp.X_, eclgp.y_.reshape((-1,1))))
 
 
-		np.savetxt("data/results/design/doe_ecl_"+name+"_"+str(i+1)+".csv", 
+		np.savetxt("../../data/results/design/doe_ecl_"+name+"_"+str(i+1)+".csv", 
 			ecl_designs[:,((dim+1)*i):((dim+1)*(i+1))-1], delimiter = ",")
