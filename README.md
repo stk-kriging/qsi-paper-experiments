@@ -3,27 +3,6 @@
 This repository contains data and scripts used for the numerical experiments of `https://arxiv.org/abs/2211.01008`.
 
 
-## How to clone this repository
-
-This repository contains [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
-
-You can clone it and initialize the submodules in one step like this:
-```
-## Using ssh...
-git clone --recurse-submodules git@github.com:stk-kriging/qsi-paper-experiments.git
-## ...or using https
-git clone --recurse-submodules https://github.com/stk-kriging/qsi-paper-experiments.git
-```
-
-If you have already cloned the repository, you can initialize the submodules using:
-```
-git submodule update --init
-```
-
-List of the submodules used by this project:
- * `algorithms/gramacylab-nasa/repo`: Python code for the ECL algorithm of (Cole et al, 2023).
-
-
 ## Reproducing the figures and experiments from the article
 
 ### Saved data
@@ -104,22 +83,18 @@ More details can be found in `algorithms/stk-contrib-qsi/README.md`.
 
 ## About ECL (Cole et al. 2023)
 
-In order to launch the ECL-related experiments, it is necessary to
-apply the patch
+Before running the ECL-related experiments, you have to run the shell script
+[algorithms/gramacylab-nasa/ecl-setup.sh](algorithms/gramacylab-nasa/ecl-setup.sh),	
+which will carry out the following step:
 
-    algorithms/gramacylab-nasa/ecl.patch
-	
-using `git am`, to the cloned repository located in
+1. Clone the ECL repository from https://bitbucket.org/gramacylab/nasa
+2. Apply [a patch](algorithms/gramacylab-nasa/ecl.patch)
+   to adapt it for the QSI paper expriments
+3. Create a virtual environment & install the
+   [required packages](algorithms/gramacylab-nasa/requirements.txt)
 
-    algorithms/gramacylab-nasa/repo
-
-This can be done automatically, on unix-like systems, using the script
-
-    algorithms/gramacylab-nasa/apply-patch.sh
-
-Package requirements for ECL can be found in
-
-    algorithms/gramacylab-nasa/requirements.txt
+If your OS cannot run shell scripts, you can of course carry out these
+operations manually (see shell script for details).
 
 
 ## Acknowledgements
