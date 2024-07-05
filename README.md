@@ -87,11 +87,11 @@ Before running the ECL-related experiments, you have to run the shell script
 [algorithms/gramacylab-nasa/ecl-setup.sh](algorithms/gramacylab-nasa/ecl-setup.sh),	
 which will carry out the following step:
 
-1. Clone the ECL repository from https://bitbucket.org/gramacylab/nasa
+1. Clone the [ECL repository](https://bitbucket.org/gramacylab/nasa).
 2. Apply [a patch](algorithms/gramacylab-nasa/ecl.patch)
-   to adapt it for the QSI paper expriments
+   to adapt it for the QSI paper expriments.
 3. Create a virtual environment & install the
-   [required packages](algorithms/gramacylab-nasa/requirements.txt)
+   [required packages](algorithms/gramacylab-nasa/requirements.txt).
 
 If your OS cannot run shell scripts, you can of course carry out these
 operations manually (see shell script for details).
