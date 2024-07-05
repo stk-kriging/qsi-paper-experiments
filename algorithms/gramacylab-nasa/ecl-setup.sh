@@ -22,5 +22,14 @@ git checkout -b qsi-paper-experiments 27dfc3df54fafcca40008790d68b0b3876316e40
 ## Apply patch
 git am ${GL}/ecl.patch
 
+## Create python virtual environment at root of the repository
+cd ${GL}/../..
+virtualenv env_ECL
+
+## Install requirements
+source env_ECL/bin/activate
+pip install -r ${GL}/requirements.txt
+deactivate
+
 ## The end
 cd ${WHERE_I_WAS}
