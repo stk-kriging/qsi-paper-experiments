@@ -54,15 +54,18 @@ found in `algorithms/stk-contrib-qsi/README.md`.
 
 ## Test functions
 
-The test functions are named differently in the paper and in this
-project. The correspondance is as follows:
-- `f_1` = `branin_mod`.
-- `f_2` = `double_camel`.
-- `f_3` = `hart4`.
-- `Volcano` = `volcano`.
+### Naming
 
-Each test `function` (and associated QSI problem) is composed and
-described by several files:
+The test functions are named differently in the article and in the code.
+The correspondance (paper ⮕ code) is as follows:
+- `f_1` ⮕ `branin_mod`.
+- `f_2` ⮕ `double_camel`.
+- `f_3` ⮕ `hart4`.
+- `Volcano` ⮕ `volcano`.
+
+### Implementation details
+
+Each test `function` (and associated QSI problem) is described by several files:
 - `function.m` or `function.py`, the associated function either coded
   in matlab or python.
 - `function_s_trnsf.m`, the inverse mapping associated to the
@@ -73,12 +76,16 @@ described by several files:
   matlab-implemented strategies (number of steps, size of the
   integration grid, number of candidates points...).
 
-All the `function`-related files are located in
-`algorithms/stk-contrib-qsi/test_functions`, except for the base
-function of the Volcano case (`testcases/volcano`) and the python
-implementation of the functions (`testcases/python`).
+### Where to find them
 
-More details can be found in `algorithms/stk-contrib-qsi/README.md`.
+Matlab implementation:
+ * everything except the volcano case is located in
+   [`algorithms/stk-contrib-qsi/test_functions`](https://github.com/stk-kriging/contrib-qsi/tree/main/test_functions).
+ * the files for the volcano case are located in
+   [`testcases/volcano-case`](testcases/volcano-case).
+
+Python implementation:
+ * Everything is in [`testcases/python`](testcases/python).
 
 
 ## About ECL (Cole et al. 2023)
