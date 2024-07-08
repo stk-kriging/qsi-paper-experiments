@@ -82,7 +82,7 @@ Matlab implementation:
  * everything except the volcano case is located in
    [`algorithms/stk-contrib-qsi/test_functions`](https://github.com/stk-kriging/contrib-qsi/tree/main/test_functions).
  * the files for the volcano case are located in
-   [`testcases/volcano-case`](testcases/volcano-case).
+   [`testcases/volcano-case`](testcases/volcano-case) and [`testcases/matlab`](testcases/matlab)
 
 Python implementation:
  * Everything is in [`testcases/python`](testcases/python).
@@ -97,7 +97,7 @@ which will carry out the following step:
 1. Clone the [ECL repository](https://bitbucket.org/gramacylab/nasa).
 2. Apply [a patch](algorithms/gramacylab-nasa/ecl.patch)
    to adapt it for the QSI paper expriments.
-3. Create a virtual environment & install the
+3. Create a python virtual environment at the root of the repository (using virtualenv) & install the
    [required packages](algorithms/gramacylab-nasa/requirements.txt).
 
 If your OS cannot run shell scripts, you can of course carry out these
