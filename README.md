@@ -1,6 +1,17 @@
 # qsi-paper-experiments
 
-This repository contains data and scripts used for the numerical experiments of `https://arxiv.org/abs/2211.01008`.
+This repository contains data and scripts used for the numerical experiments
+of the article:
+
+Romain Ait Abdelmalek-Lomenech (†), Julien Bect  (†),
+Vincent Chabridon (§) and Emmanuel Vazquez  (†)  
+__Bayesian sequential design of computer experiments for quantile set inversion__
+([arXiv:2211.01008](https://arxiv.org/abs/2211.01008))
+
+(†) Université Paris-Saclay, CNRS, CentraleSupélec,
+[Laboratoire des signaux et systèmes](https://l2s.centralesupelec.fr/),
+91190 Gif-sur-Yvette, France.  
+(§) EDF R&D, 6 Quai Watier, 78401 Chatou, France
 
 
 ## Reproducing the figures and experiments from the article
