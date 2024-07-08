@@ -1,12 +1,12 @@
 # qsi-paper-experiments
 
-This repository contains data and scripts used for the numerical experiments
-of the article:
+This repository contains data and scripts used for the numerical
+experiments of the article:
 
 Romain Ait Abdelmalek-Lomenech (†), Julien Bect  (†),
 Vincent Chabridon (§) and Emmanuel Vazquez  (†)  
-__Bayesian sequential design of computer experiments for quantile set inversion__
-([arXiv:2211.01008](https://arxiv.org/abs/2211.01008))
+__Bayesian sequential design of computer experiments for quantile set
+inversion__ ([arXiv:2211.01008](https://arxiv.org/abs/2211.01008))
 
 (†) Université Paris-Saclay, CNRS, CentraleSupélec,
 [Laboratoire des signaux et systèmes](https://l2s.centralesupelec.fr/),
@@ -93,7 +93,8 @@ Matlab implementation:
  * everything except the volcano case is located in
    [`algorithms/stk-contrib-qsi/test_functions`](https://github.com/stk-kriging/contrib-qsi/tree/main/test_functions).
  * the files for the volcano case are located in
-   [`testcases/volcano-case`](testcases/volcano-case) and [`testcases/matlab`](testcases/matlab)
+   [`testcases/volcano-case`](testcases/volcano-case) and
+   [`testcases/matlab`](testcases/matlab)
 
 Python implementation:
  * Everything is in [`testcases/python`](testcases/python).
@@ -108,7 +109,8 @@ which will carry out the following step:
 1. Clone the [ECL repository](https://bitbucket.org/gramacylab/nasa).
 2. Apply [a patch](algorithms/gramacylab-nasa/ecl.patch)
    to adapt it for the QSI paper expriments.
-3. Create a python virtual environment at the root of the repository (using virtualenv) & install the
+3. Create a python virtual environment at the root of the repository
+   (using virtualenv) & install the
    [required packages](algorithms/gramacylab-nasa/requirements.txt).
 
 If your OS cannot run shell scripts, you can of course carry out these
