@@ -13,8 +13,8 @@ inversion__ ([arXiv:2211.01008](https://arxiv.org/abs/2211.01008))
 
 (†) Université Paris-Saclay, CNRS, CentraleSupélec,
 [Laboratoire des signaux et systèmes](https://l2s.centralesupelec.fr/),
-91190 Gif-sur-Yvette, France.  
-(§) EDF R&D, 6 Quai Watier, 78401 Chatou, France
+Gif-sur-Yvette, France.  
+(§) EDF R&D, Chatou, France
 
 ![Illustration](illustration-qsi.png)
 
