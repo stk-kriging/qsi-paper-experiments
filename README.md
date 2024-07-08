@@ -37,7 +37,7 @@ Both STK 2.8.1 and the contrib-qsi repository will be automatically
 cloned the first time you start Matlab from the root of this project.
 (See [startup.m](startup.m) for details.)
 
-## Python
+### Python
 
 Python is only required to reproduce the results concerning the ECL
 algorithm of [Cole et al (2023)](https://doi.org/10.1080/00224065.2022.2053795).
