@@ -70,7 +70,7 @@ random initial design and displaying, every 3 steps, the points chosen
 by the sampling criterion.  To run it:
 
 1. Start Matlab from the root of this project.  This will trigger the
-   [startup.m](startup.m) script, which configures everything automtically.
+   [startup.m](startup.m) script, which configures everything automatically.
 2. Type `demo_qsi` in the prompt to start the demonstration.
 
 
