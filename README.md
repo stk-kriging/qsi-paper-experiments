@@ -62,6 +62,18 @@ If your OS cannot run shell scripts, you can of course carry out these
 operations manually (see shell script for details).
 
 
+## Demonstration script
+
+The script `scripts/demo_qsi.m` provides a live demonstration of the
+QSI-SUR strategy on the synthetic function `f_1`, by generating a
+random initial design and displaying, every 3 steps, the points chosen
+by the sampling criterion.  To run it:
+
+1. Start Matlab from the root of this project.  This will trigger the
+   [startup.m](startup.m) script, which configures everything automtically.
+2. Type `demo_qsi` in the prompt to start the demonstration.
+
+
 ## Reproducing the figures and experiments from the article
 
 ### Saved data
@@ -71,12 +83,7 @@ materials (sequential/initial designs, estimated covariance
 parameters, graphs...) and the associated data are saved in the `data`
 directory.
 
-### Demonstration script
 
-The script `scripts/DEMO_QSI.m` provides a demonstration of the
-QSI-SUR strategy on the synthetic function `f_1`, by generating a
-random initial design and displaying, every 3 steps, the points chosen
-by the sampling criterion.
 
 ### How to reproduce the figures from saved data
 
