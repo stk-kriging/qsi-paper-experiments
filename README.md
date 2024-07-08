@@ -16,7 +16,7 @@ inversion__ ([arXiv:2211.01008](https://arxiv.org/abs/2211.01008))
 Gif-sur-Yvette, France.  
 (§) EDF R&D, Chatou, France
 
-![Illustration](illustration-qsi.png)
+![Illustration](images/illustration-qsi.png)
 
 
 ## Requirements
@@ -72,6 +72,8 @@ by the sampling criterion.  To run it:
 1. Start Matlab from the root of this project.  This will trigger the
    [startup.m](startup.m) script, which configures everything automatically.
 2. Type `demo_qsi` in the prompt to start the demonstration.
+
+![Demo snapshot](images/demo-qsi-snapshot.png)
 
 
 ## Reproducing the figures and experiments from the article
