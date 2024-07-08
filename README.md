@@ -1,5 +1,8 @@
 # qsi-paper-experiments
 
+[![license](https://img.shields.io/github/license/stk-kriging/qsi-paper-experiments)](COPYING)
+[![last commit](https://img.shields.io/github/last-commit/stk-kriging/qsi-paper-experiments/main)](https://github.com/stk-kriging/qsi-paper-experiments/commits/main)
+
 This repository contains data and scripts used for the numerical
 experiments of the article:
 
