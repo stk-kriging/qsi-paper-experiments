@@ -154,3 +154,20 @@ The authors are grateful to Valérie Cayol and Rodolphe Le Riche for
 sharing their R implementation of the Mogi model used for the Volcano
 test case.  This work has been funded by the French National Research
 Agency (ANR), in the context of the project SAMOURAI (ANR-20-CE46-0013).
+
+
+## Copyright & license
+
+Copyright 2024 CentraleSupélec
+
+These computer programs are free software: you can redistribute them
+and/or modify them under the terms of the GNU General Public License
+as published by the Free Software Foundation, either version 3 of the
+license, or (at your option) any later version.
+
+They are distributed in the hope that they will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the license for more details.
+
+You should have received a copy of the license along with the software
+(see [COPYING.md](./COPYING.md)).  If not, see <http://www.gnu.org/licenses/>.
