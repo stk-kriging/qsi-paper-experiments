@@ -14,6 +14,49 @@ inversion__ ([arXiv:2211.01008](https://arxiv.org/abs/2211.01008))
 (§) EDF R&D, 6 Quai Watier, 78401 Chatou, France
 
 
+## Requirements
+
+### Matlab
+
+Most of the numerical experiments of the article were carried out
+using Matlab.  To reproduce the figures, or run the entire bnchmark
+from scratch, you will need:
+
+* some reasonably recent version of Matlab (R2022a was used to produce
+  the results included in the article),
+* version 2.8.1 of the [STK toolbox](https://github.com/stk-kriging/stk/),
+* and the [contrib-qsi](https://github.com/stk-kriging/contrib-qsi)
+  repository.
+
+Both STK 2.8.1 and the contrib-qsi repository will be automatically
+cloned the first time you start Matlab from the root of this project.
+(See [startup.m](startup.m) for details.)
+
+## Python
+
+Python is only required to reproduce the results concerning the ECL
+algorithm of [Cole et al (2023)](https://doi.org/10.1080/00224065.2022.2053795).
+More precisely, you will need:
+
+* some reasonably recent version of Python 3 (version 3.11.2 was
+  used to produce the results included in the article),
+* the [virtual-env](https://pypi.org/project/virtualenv/) package.
+
+Before running the ECL-related experiments, you have to run the shell script
+[algorithms/gramacylab-nasa/ecl-setup.sh](algorithms/gramacylab-nasa/ecl-setup.sh),	
+which will carry out the following step:
+
+1. Clone the [ECL repository](https://bitbucket.org/gramacylab/nasa).
+2. Apply [a patch](algorithms/gramacylab-nasa/ecl.patch)
+   to adapt it for the QSI paper expriments.
+3. Create a python virtual environment at the root of the repository
+   (using virtualenv) & install the
+   [required packages](algorithms/gramacylab-nasa/requirements.txt).
+
+If your OS cannot run shell scripts, you can of course carry out these
+operations manually (see shell script for details).
+
+
 ## Reproducing the figures and experiments from the article
 
 ### Saved data
@@ -98,23 +141,6 @@ Matlab implementation:
 
 Python implementation:
  * Everything is in [`testcases/python`](testcases/python).
-
-
-## About ECL (Cole et al. 2023)
-
-Before running the ECL-related experiments, you have to run the shell script
-[algorithms/gramacylab-nasa/ecl-setup.sh](algorithms/gramacylab-nasa/ecl-setup.sh),	
-which will carry out the following step:
-
-1. Clone the [ECL repository](https://bitbucket.org/gramacylab/nasa).
-2. Apply [a patch](algorithms/gramacylab-nasa/ecl.patch)
-   to adapt it for the QSI paper expriments.
-3. Create a python virtual environment at the root of the repository
-   (using virtualenv) & install the
-   [required packages](algorithms/gramacylab-nasa/requirements.txt).
-
-If your OS cannot run shell scripts, you can of course carry out these
-operations manually (see shell script for details).
 
 
 ## Acknowledgements
