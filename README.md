@@ -16,6 +16,8 @@ inversion__ ([arXiv:2211.01008](https://arxiv.org/abs/2211.01008))
 91190 Gif-sur-Yvette, France.  
 (§) EDF R&D, 6 Quai Watier, 78401 Chatou, France
 
+![Illustration](illustration-qsi.png)
+
 
 ## Requirements
 
