@@ -119,16 +119,28 @@ the considered test case (see next section).
 More details on the sub-functions involved in thoses scripts can be
 found in `algorithms/stk-contrib-qsi/README.md`.
 
+#### Step by step: running the Matlab experiments
+
+To run the Matlab experiments (all methods except ECL), you need to
+
+1. Edit `scripts/benchmark/matlab_experiments.m` to indicate which test
+   case you want to run.
+2. Start Matlab from the root of this project.  This will trigger the
+   [startup.m](startup.m) script, which configures everything automatically.
+3. Run `scripts/benchmark/matlab_experiments.m`.
+
+![Snapshot of matlab expriments](images/matlab-experiments-snapshot.png)
+
 #### Step by step: running the ECL experiments
 
 To run the ECL experiments, you need to
 
 1. Edit `scripts/benchmark/ecl_experiments.py` to indicate which test
-   case you want to run.  (Default: `branin_mod`)
+   case you want to run.
 2. Start the virtual environment `ECL_env`.
 3. Run `scripts/benchmark/ecl_experiments.py`.
 
-![ECL snapshot](images/ecl-snapshot.png)
+![Snapshot of ECL experiments](images/ecl-snapshot.png)
 
 
 ## Test functions
