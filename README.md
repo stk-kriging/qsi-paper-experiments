@@ -85,8 +85,6 @@ materials (sequential/initial designs, estimated covariance
 parameters, graphs...) and the associated data are saved in the `data`
 directory.
 
-
-
 ### How to reproduce the figures from saved data
 
 The figures displayed in the article can be reproduced, using the data
@@ -98,13 +96,15 @@ stored in `data/`, by launching the scripts in `scripts/figures`:
 
 ### How to reproduce the benchmark results from scratch
 
+#### Scripts
+
 Three scripts, located in `scripts/benchmark`, allow to reproduce the
 experiments and the associated data:
 - `matlab_experiments.m` constructs sequential designs using the
   QSI-SUR, Joint-SUR, Ranjan, max. misclassification and random
   satrategies.
 - `ecl_experiments.py` constructs sequential designs using the ECL
-  strategy.
+  strategy (more details below).
 - `results_computation.m` computes the proportion of misclassified
   points at each step for all the competitor strategies and saves the
   results in `data/results`.
@@ -118,6 +118,17 @@ the considered test case (see next section).
 
 More details on the sub-functions involved in thoses scripts can be
 found in `algorithms/stk-contrib-qsi/README.md`.
+
+#### Step by step: running the ECL experiments
+
+To run the ECL experiments, you need to
+
+1. Edit `scripts/benchmark/ecl_experiments.py` to indicate which test
+   case you want to run.  (Default: `branin_mod`)
+2. Start the virtual environment `ECL_env`.
+3. Run `scripts/benchmark/ecl_experiments.py`.
+
+![ECL snapshot](images/ecl-snapshot.png)
 
 
 ## Test functions
