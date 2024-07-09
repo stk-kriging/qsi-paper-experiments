@@ -24,7 +24,7 @@ Gif-sur-Yvette, France.
 ### Matlab
 
 Most of the numerical experiments of the article were carried out
-using Matlab.  To reproduce the figures, or run the entire bnchmark
+using Matlab.  To reproduce the figures, or run the entire benchmark
 from scratch, you will need:
 
 * some reasonably recent version of Matlab (R2022a was used to produce
