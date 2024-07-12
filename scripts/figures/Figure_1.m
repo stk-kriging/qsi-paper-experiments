@@ -71,4 +71,4 @@ df = double(adapt_set(xf,sf));
 set_selector = (set == 1);
 abs_quantile = nan(1, size(xf, 1));
 abs_quantile(set_selector) = 0;
-plot(xf, abs_quantile, 'Color', 'green', 'LineWidth', 4)
+plot(xf, abs_quantile, 'Color', 'green', 'LineWidth', 4);
