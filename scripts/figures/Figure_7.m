@@ -224,7 +224,7 @@ for t = 1:nb_steps %loop on steps
     colorbar()
     xlim([0 10])
     ylim([0 15])
-    title(sprintf('Qsi %d', t))
+    title(sprintf('QSI-SUR - step %d', t))
     xlabel("X")
     ylabel("S")
 
@@ -300,7 +300,7 @@ for t = 1:nb_steps %loop on steps
     colorbar()
     xlim([0 10])
     ylim([0 15])
-    title(sprintf('misclass %d', t))
+    title(sprintf('Max. misclass - step %d', t))
     xlabel("X")
     ylabel("S")
 
