@@ -34,8 +34,8 @@ from scratch, you will need:
   repository.
 
 Both STK 2.8.1 and the contrib-qsi repository will be automatically
-cloned the first time you start Matlab from the root of this project.
-(See [startup.m](startup.m) for details.)
+cloned by executing [`startup.m`](startup.m). Generally, this script is
+automatically executed the first time you start Matlab from the root of this project. 
 
 ### Python
 
