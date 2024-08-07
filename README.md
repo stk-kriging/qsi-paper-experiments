@@ -220,6 +220,8 @@ This work has been funded by the French National Research
 Agency (ANR), in the context of the SAMOURAI project
 ([ANR-20-CE46-0013](https://anr.fr/Projet-ANR-20-CE46-0013)).
 
+![Logo of the SAMOURAI project](images/anr_samourai_logo.png)
+
 
 ## License
 
