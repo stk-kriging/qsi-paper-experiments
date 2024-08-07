@@ -1,34 +1,4 @@
-###########################
-# Utility functions for
-# Inversion of a punctual displacements source from 3D data
-# The data used are under-sampled with the quadtree method (irregular grid)
-#
-# Rodolphe Le Riche, Nicolas Durrande, Valerie Cayol, Victor Picheny
-#
-# Notes: 
-# * use of global variables, starting with Glb_...
-###########################
-
-
-##### Exponential kernel (i.e. Matérn 1/2) #####
-
-# mydist <- function(x,y,theta=NULL)
-# {
-#   if(ncol(x) != ncol(y)) stop("x and y must have the same number of columns") 
-#   if(is.null(theta)) theta <- rep(1,ncol(x))
-#   dist2 <- matrix(0,dim(x)[1],dim(y)[1])
-#   for(i in 1:dim(x)[2]){
-#     dist2 <- dist2 + (outer(x[,i],y[,i],"-")/theta[i])^2
-#   }
-#   return(sqrt(dist2))
-# }
-# 
-# kExp <- function(x,y,param=NULL)
-# {
-#   if(is.null(param)) param <- c(1,rep(.2,ncol(x)))
-#   abs(param[1])*exp(-mydist(x,y,param[-1]))
-# }
-
+## volcano.R
 
 ##### Inputs variables #####
 #
