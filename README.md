@@ -217,19 +217,6 @@ test case.  This work has been funded by the French National Research
 Agency (ANR), in the context of the project SAMOURAI (ANR-20-CE46-0013).
 
 
-## Copyright & license
+## License
 
-Copyright 2024 CentraleSupélec  
-Copyright 2017 Rodolphe Le Riche & Valérie Cayol
-
-These computer programs are free software: you can redistribute them
-and/or modify them under the terms of the GNU General Public License
-as published by the Free Software Foundation, either version 3 of the
-license, or (at your option) any later version.
-
-They are distributed in the hope that they will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the license for more details.
-
-You should have received a copy of the license along with the software
-(see [COPYING.md](./COPYING.md)).  If not, see <http://www.gnu.org/licenses/>.
+qsi-paper-experiments is released under the [BSD-3-Clause](COPYING.md) license.
