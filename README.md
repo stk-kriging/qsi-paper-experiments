@@ -223,6 +223,17 @@ Agency (ANR), in the context of the SAMOURAI project
 ![Logo of the SAMOURAI project](images/anr_samourai_logo.png)
 
 
+## Authors
+
+Except otherwide noted, [Romain Ait
+Abdelmalek-Lomenech](https://github.com/RomainAit) wrote all the files
+in this project, with occasional help of [Julien Bect](https://github.com/jbect).
+
+The R implementation of the "volcano" test case has been originally
+written by Rodolphe Le Riche and Valérie Cayol, and then modified by
+[Julien Bect](https://github.com/jbect) for the needs of this project.
+
+
 ## License
 
 qsi-paper-experiments is released under the [BSD-3-Clause](COPYING.md) license.
