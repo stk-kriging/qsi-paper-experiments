@@ -195,7 +195,8 @@ Agency (ANR), in the context of the project SAMOURAI (ANR-20-CE46-0013).
 
 ## Copyright & license
 
-Copyright 2024 CentraleSupélec
+Copyright 2024 CentraleSupélec  
+Copyright 2017 Rodolphe Le Riche & Valérie Cayol
 
 These computer programs are free software: you can redistribute them
 and/or modify them under the terms of the GNU General Public License
