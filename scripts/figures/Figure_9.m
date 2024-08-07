@@ -64,7 +64,7 @@ python_path = sprintf('sys.path.append("%s");', algo_dir);
 python_import2 = sprintf('from ecl_experiments_launcher import ecl_experiments_launcher;');
 python_launch = sprintf('ecl_experiments_launcher(%s, %d);', test_case, nb_runs);
 
-[status, output] = system (sprintf("%s; python -c '%s %s %s %s'", env_cmd, python_import, ...
+[status, output] = system (sprintf("%s; python3 -c '%s %s %s %s'", env_cmd, python_import, ...
     python_path, python_import2, python_launch), '-echo'); %launching
 
 

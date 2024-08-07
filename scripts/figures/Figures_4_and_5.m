@@ -34,7 +34,6 @@ if DO_F1
     %%%%% MATLAB EXPERIMENTS
 
 
-    %{
     disp ('Starting QSI-SUR')
     parfor it = 1:nb_runs
         QSI_SUR (funct_struct, funct_config, it, data_dir)
@@ -81,7 +80,7 @@ if DO_F1
         python_path, python_import2, python_launch), '-echo'); %launching
 
 
-    %}
+    
     %%% EXTRACTING MISCLASS. PROPORTION (matlab and python).
 
     delete(gcp('nocreate'))
@@ -334,7 +333,7 @@ if DO_F2
     python_import2 = sprintf('from ecl_experiments_launcher import ecl_experiments_launcher;');
     python_launch = sprintf('ecl_experiments_launcher(%s, %d);', test_case, nb_runs);
 
-    [status, output] = system (sprintf("%s; python -c '%s %s %s %s'", env_cmd, python_import, ...
+    [status, output] = system (sprintf("%s; python3 -c '%s %s %s %s'", env_cmd, python_import, ...
         python_path, python_import2, python_launch), '-echo'); %launching
 
 
@@ -566,7 +565,7 @@ if DO_F3
     python_import2 = sprintf('from ecl_experiments_launcher import ecl_experiments_launcher;');
     python_launch = sprintf('ecl_experiments_launcher(%s, %d);', test_case, nb_runs);
 
-    [status, output] = system (sprintf("%s; python -c '%s %s %s %s'", env_cmd, python_import, ...
+    [status, output] = system (sprintf("%s; python3 -c '%s %s %s %s'", env_cmd, python_import, ...
         python_path, python_import2, python_launch), '-echo'); %launching
 
 
