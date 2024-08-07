@@ -1,11 +1,5 @@
-% Create cluster
-
-% Copyright Notice
-%
-% Copyright (C) 2024 CentraleSupelec
-%
-%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
-
+% Create cluster for parallel computing. Useful in the particular case
+% of several instances of Matlab each using parpool.
 
 
 function [local_cluster, cleanUp] = get_cluster(profile)

@@ -1,13 +1,7 @@
 % Create figures comparing sampling criterion surface of QSI-SUR
-% and maximum misclassification probability for the initial design it, on
+% and maximum misclassification probability for a random initial design, on
 % the test function f_1.
 
-% Copyright Notice
-%
-% Copyright (C) 2024 CentraleSupelec
-%
-%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
-%             Julien Bect <julien.bect@centralesupelec.fr>
 
 [prm, f, s_trnsf] = branin_mod_struct(); %loading function and parameters
 config = branin_mod_config();

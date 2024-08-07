@@ -1,10 +1,5 @@
 % Construct convergence graphs for the different competitors.
 
-% Copyright Notice
-%
-% Copyright (C) 2024 CentraleSupelec
-%
-%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
 
 here = fileparts (mfilename ('fullpath'));
 data_dir = fullfile (here, '..', '..', 'data');

@@ -1,12 +1,6 @@
 %Extract proportion of misclassief points for ECL (Cole et al. 2023)
 %strategy
 
-% Copyright Notice
-%
-% Copyright (C) 2024 CentraleSupelec
-%
-%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
-
 
 function extract_deviation_ECL(funct_struct, config, it, data_dir)
 
@@ -23,22 +17,44 @@ config = config();
 
 PTS_X = config.pts_eval_x;
 PTS_S = config.pts_eval_s;
-
-here = fileparts(mfilename('fullpath'));
-
 dim_tot = prm.dim_x+prm.dim_s;
 
+xf = stk_sampling_sobol(PTS_X, prm.dim_x, prm.BOXx);
+sf = stk_sampling_sobol(PTS_S, prm.dim_s, prm.BOXs);
+sf = s_trnsf(sf);
+df = adapt_set (xf, sf);
+
+file = sprintf ('grid_%s.csv', prm.name);
+file = fullfile (data_dir, 'grid', file);
+if ~ exist (file, "file")
+    writematrix (double(df), file);
+else
+    test_df = readmatrix(file);
+    if size(test_df,1) ~= PTS_X*PTS_S
+        writematrix (double(df), file);
+    else
+        df = test_df;
+    end
+end
+
+
 file = sprintf('results_grid_%s.csv', prm.name);
-file = fullfile(here, '..', 'data/grid', file);
+file = fullfile(data_dir, 'grid', file);
 if ~exist(file, "file")
     xf = stk_sampling_sobol(PTS_X, prm.dim_x, prm.BOXx);
     sf = stk_sampling_sobol(PTS_S, prm.dim_s, prm.BOXs);
     sf = s_trnsf(sf);
     df = adapt_set(xf,sf);
     zf = f(df);
-    csvwrite(file, zf);
+    writematrix(zf, file);
 else
-    zf = csvread(file);
+    test_zf = readmatrix(file);
+    if size(test_zf,1) ~= PTS_X*PTS_S
+        zf = f(df);
+        writematrix (zf, file);
+    else
+        zf = test_zf;
+    end
 end
 zf = double(zf);
 

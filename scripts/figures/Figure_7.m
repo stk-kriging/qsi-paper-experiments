@@ -2,15 +2,9 @@
 % and maximum misclassification probability for the initial design it, on
 % the test function f_1.
 
-% Copyright Notice
-%
-% Copyright (C) 2024 CentraleSupelec
-%
-%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr>
-%             Julien Bect <julien.bect@centralesupelec.fr>
 
 set_pts = 50;  % Square root of the number of candidates
-nb_steps = 2;  % Number of steps to visualize
+nb_steps = 3;  % Number of steps to visualize
 it = 99;       % Id of the initial DoEs to use
 
 here = fileparts (mfilename ('fullpath'));

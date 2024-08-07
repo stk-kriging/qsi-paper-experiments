@@ -1,14 +1,5 @@
 % Get the ECL predictions inside matlab.
 
-% Copyright Notice
-%
-% Copyright (C) 2024 CentraleSupelec
-%
-%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
-
-
-function QSI_SUR(funct_struct, config_func, it, DEMO, filePath)
-
 
 function Y = get_ecl_predictions(name, design)
 
@@ -48,7 +39,7 @@ csvwrite (design_csv, design);
 
 env_ECL = fullfile(here, '../env_ECL/bin/activate');
 cmd1 = sprintf('source %s', env_ECL);
-cmd2 = sprintf ('python %s %s %s %s %s %s', python_script, name, design_csv, grid_csv, output_mu, output_std);
+cmd2 = sprintf ('python3 %s %s %s %s %s %s', python_script, name, design_csv, grid_csv, output_mu, output_std);
 
 [status, output] = system (sprintf('%s; %s', cmd1, cmd2), '-echo');
 

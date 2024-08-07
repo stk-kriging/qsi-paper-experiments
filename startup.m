@@ -1,10 +1,3 @@
-% Copyright Notice
-%
-% Copyright (C) 2024 CentraleSupelec
-%
-%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
-%             Julien Bect <julien.bect@centralesupelec.fr>
-
 function startup ()
 
 % Locate project root
@@ -12,6 +5,7 @@ root = fileparts (mfilename ('fullpath'));
 
 % Add directories to the path
 addpath (fullfile (root, 'testcases', 'volcano-case'));
+addpath (fullfile (root, 'testcases', 'matlab'));
 addpath (fullfile (root, 'misc'));
 addpath (genpath (fullfile (root, 'scripts')));
 

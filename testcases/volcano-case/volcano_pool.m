@@ -1,11 +1,3 @@
-% Copyright Notice
-%
-% Copyright (C) 2024 CentraleSupelec
-%
-%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
-%             Julien Bect <julien.bect@centralesupelec.fr>
-
-
 function z = volcano_pool(x, nb_cpu)
     
     if nargin < 2

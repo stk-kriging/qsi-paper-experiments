@@ -1,9 +1,3 @@
-# Copyright Notice
-#
-# Copyright (C) 2024 CentraleSupelec
-#
-# Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
-
 import numpy as np
 import os
 import sys

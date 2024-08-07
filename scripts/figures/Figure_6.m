@@ -1,12 +1,6 @@
 % Allows to create sequential graphs representing the obtained DoEs for the
 % different algorithms on the branin_mod function.
 
-% Copyright Notice
-%
-% Copyright (C) 2024 CentraleSupelec
-%
-%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr> 
-
 
 FROM_DATA = 1; %If FROM_DATA == 0, compute the sequential designs.
 

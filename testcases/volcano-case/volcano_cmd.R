@@ -1,10 +1,3 @@
-# Copyright Notice
-#
-# Copyright (C) 2024 CentraleSupelec
-#
-# Authors: Julien Bect <julien.bect@centralesupelec.fr> 
-
-
 args = commandArgs(trailingOnly=TRUE)
 
 ## args[1]: location of volcano.R

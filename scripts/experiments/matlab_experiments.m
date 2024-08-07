@@ -1,10 +1,3 @@
-% Copyright Notice
-%
-% Copyright (C) 2024 CentraleSupelec
-%
-%    Authors: Romain Ait Abdelmalek-Lomenech <romain.ait@centralesupelec.fr>
-%             Julien Bect <julien.bect@centralesupelec.fr>
-
 POOL = 0;  % If POOL > 0, use POOL as the number of parallel workers.
 nb_runs = 100;  % Number of runs of the different algorithms.
 

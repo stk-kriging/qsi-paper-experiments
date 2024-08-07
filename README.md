@@ -19,12 +19,13 @@ Gif-sur-Yvette, France.
 ![Illustration](images/illustration-qsi.png)
 
 
+
 ## Requirements
 
 ### Matlab
 
 Most of the numerical experiments of the article were carried out
-using Matlab.  To reproduce the figures, or run the entire benchmark
+using Matlab. To reproduce the figures, or run the entire benchmark
 from scratch, you will need:
 
 * some reasonably recent version of Matlab (R2022a was used to produce
@@ -33,10 +34,10 @@ from scratch, you will need:
 * and the [contrib-qsi](https://github.com/stk-kriging/contrib-qsi)
   repository.
 
-Both STK 2.8.1 and the contrib-qsi repository will be automatically
-cloned, and the necessary paths added, by executing [`startup.m`](startup.m). 
-Generally, this script is automatically executed the first time you start Matlab 
-from the root of this project. 
+Both STK 2.8.1 and the contrib-qsi repository paths will be automatically
+added by executing [`startup.m`](startup.m). Generally, this script is
+automatically executed the first time you start Matlab from the root of this project. 
+
 
 ### Python
 
@@ -63,6 +64,12 @@ If your OS cannot run shell scripts, you can of course carry out these
 operations manually (see shell script for details).
 
 
+### R
+
+A reasonably recent version of R is only required for the Volcano application case. Version 4.2.2 was
+used to produce the results included in the article.
+
+
 ## Demonstration script
 
 The script `scripts/demo_qsi.m` provides a live demonstration of the
@@ -86,24 +93,34 @@ materials (sequential/initial designs, estimated covariance
 parameters, graphs...) and the associated data are saved in the `data`
 directory.
 
-### How to reproduce the figures from saved data
+### How to reproduce the figures
 
 The figures displayed in the article can be reproduced, using the data
 stored in `data/`, by launching the scripts in `scripts/figures`:
-- `Figure_i.m` (with i = 1, 3, 6, 7) for the corresponding figure.
+- `Figure_i.m` (with i = 1, 3, 4_and_5, 6, 7, 9) for the corresponding figure.
 - `Figures_convergence.m` for the figures 4, 5, 9 and the ones
   displayed in the supplementary material, for a given function (by
-  default, `f_1`).
+  default, `f_1`), using saved datas.
 
-### How to reproduce the benchmark results from scratch
+By default, `Figures_4_and_5.m` and `Figure_9` reproduce the figures by running a full
+benchmark using all the CPU cores (minus 1) to parallelize the different runs. This can be tuned by editing some
+variables at the beginning of the corresponding scripts, and the test functions configuration
+files (see section `Test functions`).
+
+
+### How to reproduce the experiments independantly
+
+This part describes how to reproduce and save the experiments independantly of the
+`Figures_j.m` scripts.
+
 
 #### Scripts
 
-Three scripts, located in `scripts/benchmark`, allow to reproduce the
+Three scripts, located in `scripts/experiments`, allow to reproduce the
 experiments and the associated data:
 - `matlab_experiments.m` constructs sequential designs using the
   QSI-SUR, Joint-SUR, Ranjan, max. misclassification and random
-  satrategies.
+  strategies.
 - `ecl_experiments.py` constructs sequential designs using the ECL
   strategy (more details below).
 - `results_computation.m` computes the proportion of misclassified
@@ -115,7 +132,7 @@ parallel computing, for the synthethic test function `f_1`. The full
 reproduction of the experiments used in the paper can take a (very)
 long time, but this can be alleviate by reducing the number of runs,
 activating parallel computing, or modifying the configuration file of
-the considered test case (see next section).
+the considered test case (see section `Test functions`).
 
 More details on the sub-functions involved in thoses scripts can be
 found in `algorithms/stk-contrib-qsi/README.md`.
@@ -124,11 +141,11 @@ found in `algorithms/stk-contrib-qsi/README.md`.
 
 To run the Matlab experiments (all methods except ECL), you need to:
 
-1. Edit `scripts/benchmark/matlab_experiments.m` to indicate which test
+1. Edit `scripts/experiments/matlab_experiments.m` to indicate which test
    case you want to run.
 2. Start Matlab from the root of this project.  This will trigger the
    [startup.m](startup.m) script, which configures everything automatically.
-3. Run `scripts/benchmark/matlab_experiments.m`.
+3. Run `scripts/experiments/matlab_experiments.m`.
 
 Here is what it should look like:
 
@@ -138,14 +155,22 @@ Here is what it should look like:
 
 To run the ECL experiments, you need to:
 
-1. Edit `scripts/benchmark/ecl_experiments.py` to indicate which test
+1. Edit `scripts/experiments/ecl_experiments.py` to indicate which test
    case you want to run.
 2. Start the virtual environment `ECL_env`.
-3. Run `scripts/benchmark/ecl_experiments.py`.
+3. Run `scripts/experiments/ecl_experiments.py`.
 
 Here is what it should look like:
 
 ![Snapshot of ECL experiments](images/ecl-snapshot.png)
+
+### Step by step: extracting convergence results
+
+To extract convergence results, you need to:
+
+1. Edit `scripts/experiments/results_computation.m` to indicate which test
+   case you are interested about.
+2. Run `scripts/experiments/results_computation.m`.
 
 
 ## Test functions
@@ -176,14 +201,13 @@ Each test `function` (and associated QSI problem) is described by several files:
 
 Matlab implementation:
  * everything except the volcano case is located in
-   [`algorithms/stk-contrib-qsi/test_functions`](https://github.com/stk-kriging/contrib-qsi/tree/main/test_functions).
+   [`algorithms/stk-contrib-qsi/test_functions`].
  * the files for the volcano case are located in
    [`testcases/volcano-case`](testcases/volcano-case) and
    [`testcases/matlab`](testcases/matlab)
 
 Python implementation:
  * Everything is in [`testcases/python`](testcases/python).
-
 
 ## Acknowledgements
 
