@@ -209,14 +209,33 @@ Matlab implementation:
 Python implementation:
  * Everything is in [`testcases/python`](testcases/python).
 
+
 ## Acknowledgements
 
 The authors are grateful to Valérie Cayol and Rodolphe Le Riche for
-sharing their R implementation of the Mogi model used for the Volcano
-test case.  This work has been funded by the French National Research
-Agency (ANR), in the context of the project SAMOURAI (ANR-20-CE46-0013).
+sharing their R implementation of the Mogi model used for the
+["volcano" test case](./testcases/volcano-case).
+
+This work has been funded by the French National Research
+Agency (ANR), in the context of the SAMOURAI project
+([ANR-20-CE46-0013](https://anr.fr/Projet-ANR-20-CE46-0013)).
 
 
 ## License
 
 qsi-paper-experiments is released under the [BSD-3-Clause](COPYING.md) license.
+
+The files [volcano.R](./testcases/volcano-case/volcano.R),
+[data_nonoise.csv](./testcases/volcano-case/data_nonoise.csv), and
+[volcano_ref.mat](./testcases/volcano-case/volcano_ref.mat), located
+in [testcases/volcano-case](./testcases/volcano-case), have been
+derived from the original files provided by Rodolphe Le Riche and
+Valérie Cayol. They have the following copyrights:
+
+_Copyright (c) 2024, CentraleSupélec_  
+_Copyright (c) 2017, Rodolphe Le Riche & Valérie Cayol_
+
+The other files have been written from scratch for this project, and
+thus can, if needed, be distributed under the simplified copyright:
+
+_Copyright (c) 2024, CentraleSupélec_  
