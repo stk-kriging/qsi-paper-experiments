@@ -2,8 +2,8 @@ POOL = 0;  % If POOL > 0, use POOL as the number of parallel workers.
 nb_runs = 100;  % Number of runs of the different algorithms.
 
 % Problem structure and configuration.
-struct = @branin_mod_struct;
-config = @branin_mod_config;
+funct_struct = @branin_mod_struct;
+funct_config = @branin_mod_config;
 
 here = fileparts (mfilename ('fullpath'));
 data_dir = fullfile (here, '..', '..', 'data');
@@ -20,54 +20,54 @@ if POOL > 0
 
     disp ('Starting QSI-SUR')
     parfor it = 1:nb_runs
-        QSI_SUR (struct, config, it, data_dir)
+        QSI_SUR (funct_struct, funct_config, it, data_dir)
     end
 
     disp ('Starting Joint-SUR')
     parfor it = 1:nb_runs
-        joint_SUR (struct, config, it, data_dir)
+        joint_SUR (funct_struct, funct_config, it, data_dir)
     end
 
     disp ('Starting maximum misclassification')
     parfor it = 1:nb_runs
-        misclassification (struct, config, it, data_dir)
+        misclassification (funct_struct, funct_config, it, data_dir)
     end
 
     disp ('Starting Ranjan')
     parfor it = 1:nb_runs
-        Ranjan (struct, config, it, data_dir)
+        Ranjan (funct_struct, funct_config, it, data_dir)
     end
 
     disp ('Starting random sampling')
     parfor it = 1:nb_runs
-        random (struct, config, it, data_dir)
+        random (funct_struct, funct_config, it, data_dir)
     end
 
 else
 
     disp ('Starting QSI-SUR')
     for it = 1:nb_runs
-        QSI_SUR (struct, config, it, data_dir)
+        QSI_SUR (funct_struct, funct_config, it, data_dir)
     end
 
     disp ('Starting Joint-SUR')
     for it = 1:nb_runs
-        joint_SUR(struct, config, it, data_dir)
+        joint_SUR(funct_struct, funct_config, it, data_dir)
     end
 
     disp ('Starting maximum misclassification')
     for it = 1:nb_runs
-        misclassification (struct, config, it, data_dir)
+        misclassification (funct_struct, funct_config, it, data_dir)
     end
 
     disp ('Starting Ranjan')
     for it = 1:nb_runs
-        Ranjan (struct, config, it, data_dir)
+        Ranjan (funct_struct, funct_config, it, data_dir)
     end
 
     disp ('Starting random sampling')
     for it = 1:nb_runs
-        random (struct, config, it, data_dir)
+        random (funct_struct, funct_config, it, data_dir)
     end
 
 end
