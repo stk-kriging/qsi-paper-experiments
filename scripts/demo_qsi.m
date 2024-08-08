@@ -9,4 +9,4 @@
 % May take a while due to graph generation
 
 
-run('DEMO_QSI.m')
+run('QSI_DEMO.m')
