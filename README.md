@@ -225,7 +225,7 @@ Agency (ANR), in the context of the SAMOURAI project
 
 ## Authors
 
-Except otherwide noted, [Romain Ait
+Except otherwise noted, [Romain Ait
 Abdelmalek-Lomenech](https://github.com/RomainAit) wrote all the files
 in this project, with occasional help of [Julien Bect](https://github.com/jbect).
 
