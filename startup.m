@@ -13,7 +13,7 @@ addpath (genpath (fullfile (root, 'scripts')));
 contrib_qsi = fullfile (root, 'algorithms', 'stk-contrib-qsi');
 if ~ exist (contrib_qsi, 'dir')
     git_clone_dependency ('stk', contrib_qsi, ...
-        'https://github.com/stk-kriging/contrib-qsi.git', 'main');
+        'https://github.com/stk-kriging/contrib-qsi.git', 'qsi-paper-experiments');
 end
 
 % Add contrib-qsi to the path
