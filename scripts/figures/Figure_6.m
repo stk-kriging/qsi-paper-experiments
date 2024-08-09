@@ -7,7 +7,7 @@ FROM_DATA = 1; %If FROM_DATA == 0, compute the sequential designs.
 it = 60; %id of the run to display
 AX = [30]; %steps to show
 
-PTS_DIM = 250;%number of points 
+PTS_DIM = 250;%number of points for plot
 
 %Names of the files to retrieve.
 name_list = ["QSI_m", "joint_m", "misclassification", "Ranjan"];
