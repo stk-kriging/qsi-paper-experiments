@@ -18,16 +18,14 @@ name_graphs = ["QSI-SUR", "Joint-SUR", "misclassification", "Ranjan"];
 conf = @branin_mod_config;
 
 if FROM_DATA == 0
+    here = fileparts (mfilename ('fullpath'));
+    data_dir = fullfile (here, '..', '..', 'data');
     struct = @branin_mod_struct;
-    if LIGHT_MODE == 1
-        conf = @branin_mod_config_light;
-    end
-    for it = it_list
-            QSI_SUR(struct, conf, it, 0, '../../../data')
-            joint_SUR(struct, conf, it, '../../../data')
-            misclassification(struct, conf, it, '../../../data')
-            Ranjan(struct, conf, it, '../../../data')
-    end
+
+    QSI_SUR(struct, conf, it, data_dir)
+    joint_SUR(struct, conf, it, data_dir)
+    misclassification(struct, conf, it, data_dir)
+    Ranjan(struct, conf, it, data_dir)
 end
 
 config = conf();
