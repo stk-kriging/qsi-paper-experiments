@@ -246,7 +246,7 @@ derived from the original files provided by Rodolphe Le Riche and
 Valérie Cayol. They have the following copyrights:
 
 _Copyright (c) 2024, CentraleSupélec_  
-_Copyright (c) 2017, Rodolphe Le Riche & Valérie Cayol_
+_Copyright (c) 2017, CNRS_
 
 The other files have been written from scratch for this project, and
 thus can, if needed, be distributed under the simplified copyright:
