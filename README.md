@@ -243,7 +243,7 @@ The files [volcano.R](./testcases/volcano-case/volcano.R),
 [volcano_ref.mat](./testcases/volcano-case/volcano_ref.mat), located
 in [testcases/volcano-case](./testcases/volcano-case), have been
 derived from the original files provided by Rodolphe Le Riche and
-Valérie Cayol. They have the following copyrights:
+Valérie Cayol, from CNRS. They have the following copyrights:
 
 _Copyright (c) 2024, CentraleSupélec_  
 _Copyright (c) 2017, CNRS_
