@@ -57,7 +57,7 @@ for m = 1:size(name_list,2)
             file_para = readmatrix(filename_para);
             file_cov = readmatrix(filename_cov);
 
-            cov = convertStringsToChars(prm.list_cov(file_cov(T+1,:)));
+            cov = prm.list_cov{file_cov(T+1,:)};
 
             Model = stk_model(cov,2);
             Model.param = file_para(T+1, :);
