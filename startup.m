@@ -33,9 +33,11 @@ end
 
 fprintf ('Cloning %s... ', name);
 
+here = pwd ();
+
 try
 
-    gitcmd = sprintf ('git clone %s %s', url, dst);
+    gitcmd = create_git_call (sprintf ('clone %s %s', url, dst));
     evalc (sprintf ('[status, output] = system (''%s'')', gitcmd));
     if status ~= 0
         error ([ ...
@@ -43,9 +45,9 @@ try
             'error message:\n\n%s\n\n'], output);
     end
 
-    here = pwd ();  cd (dst);
+    cd (dst);
 
-    gitcmd = sprintf ('git checkout %s', sha1_or_tag);
+    gitcmd = create_git_call (sprintf ('checkout %s', sha1_or_tag));
     evalc (sprintf ('[status, output] = system (''%s'')', gitcmd));
     if status ~= 0
         error ([ ...
@@ -71,3 +73,17 @@ end % try-catch
 fprintf ('OK\n');
 
 end % function
+
+
+function gitcmd = create_git_call (cmd)
+
+if isunix ()
+    prefix = 'env -u LD_LIBRARY_PATH ';
+else
+    prefix = '';
+end
+
+gitcmd = sprintf ('%s git %s', prefix, cmd);
+
+end % function
+
