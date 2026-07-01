@@ -2,7 +2,7 @@
 %strategy
 
 
-function extract_deviation_ECL(funct_struct, config, it, data_dir)
+function extract_deviation_ECL (funct_struct, config, it, data_dir)
 
 disp("Run number "+int2str(it))
 
@@ -11,9 +11,7 @@ if nargin < 4
     data_dir = fullfile (here, '..', 'data');
 end
 
-
 [prm, f, s_trnsf] = funct_struct();
-config = config();
 
 PTS_X = config.pts_eval_x;
 PTS_S = config.pts_eval_s;

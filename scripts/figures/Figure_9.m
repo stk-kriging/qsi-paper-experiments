@@ -7,7 +7,7 @@ nb_cores = maxNumCompThreads-1; %Number of computing core to use.
 % Problem structure and configuration.
 test_case = '"volcano"';
 funct_struct = @volcano_struct;
-funct_config = @volcano_config;
+config = volcano_config ();
 
 here = fileparts (mfilename ('fullpath'));
 data_dir = fullfile (here, '..', '..', 'data');
@@ -24,27 +24,27 @@ pctRunOnAll warning ('off','all');
 
 disp ('Starting QSI-SUR')
 parfor it = 1:nb_runs
-    QSI_SUR (funct_struct, funct_config, it, data_dir)
+    QSI_SUR (funct_struct, config, it, data_dir)
 end
 
 disp ('Starting Joint-SUR')
 parfor it = 1:nb_runs
-    joint_SUR (funct_struct, funct_config, it, data_dir)
+    joint_SUR (funct_struct, config, it, data_dir)
 end
 
 disp ('Starting maximum misclassification')
 parfor it = 1:nb_runs
-    misclassification (funct_struct, funct_config, it, data_dir)
+    misclassification (funct_struct, config, it, data_dir)
 end
 
 disp ('Starting Ranjan')
 parfor it = 1:nb_runs
-    Ranjan (funct_struct, funct_config, it, data_dir)
+    Ranjan (funct_struct, config, it, data_dir)
 end
 
 disp ('Starting random sampling')
 parfor it = 1:nb_runs
-    random (funct_struct, funct_config, it, data_dir)
+    random (funct_struct, config, it, data_dir)
 end
 
 delete (gcp ('nocreate'));
@@ -77,7 +77,6 @@ pctRunOnAll run startup.m
 pctRunOnAll warning ('off','all');
 
 [prm, f, s_trnsf] = funct_struct();
-config = funct_config();
 
 PTS_X = config.pts_eval_x;
 PTS_S = config.pts_eval_s;
@@ -119,32 +118,32 @@ end
 
 disp('Computing QSI-SUR results')
 parfor it=1:nb_runs
-    extract_deviation(funct_struct, funct_config, "QSI_m", it, data_dir)
+    extract_deviation (funct_struct, config, "QSI_m", it, data_dir)
 end
 
 disp('Computing Joint-SUR results')
 parfor it=1:nb_runs
-    extract_deviation(funct_struct, funct_config, "joint_m", it, data_dir)
+    extract_deviation (funct_struct, config, "joint_m", it, data_dir)
 end
 
 disp('Computing maximum misclassification results')
 parfor it=1:nb_runs
-    extract_deviation(funct_struct, funct_config, "misclassification", it, data_dir)
+    extract_deviation (funct_struct, config, "misclassification", it, data_dir)
 end
 
 disp('Computing Ranjan results')
 parfor it=1:nb_runs
-    extract_deviation(funct_struct, funct_config, "Ranjan", it, data_dir)
+    extract_deviation (funct_struct, config, "Ranjan", it, data_dir)
 end
 
 disp('Computing random sampling results')
 parfor it=1:nb_runs
-    extract_deviation(funct_struct, funct_config, "random", it, data_dir)
+    extract_deviation (funct_struct, config, "random", it, data_dir)
 end
 
 disp('Computing ECL results')
 for it=1:nb_runs
-    extract_deviation_ECL(funct_struct, funct_config, it, data_dir)
+    extract_deviation_ECL (funct_struct, config, it, data_dir)
 end
 
 
@@ -153,7 +152,6 @@ delete(gcp('nocreate'))
 %%% GENERATING GRAPHS
 
 prm = funct_struct ();
-config = funct_config ();
 
 disp (sprintf ("Plotting convergence graphs for %s", prm.name)) %#ok<DSPSP>
 

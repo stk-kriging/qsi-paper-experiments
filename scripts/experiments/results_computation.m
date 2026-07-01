@@ -3,13 +3,12 @@ nb_runs = 100; %Number of runs of the different algorithms.
 
 %Problem structure and configuration.
 funct_struct = @branin_mod_struct;
-funct_config = @branin_mod_config;
+config = branin_mod_config ();
 
 here = fileparts (mfilename ('fullpath'));
 data_dir = fullfile (here, '..', '..', 'data');
 
 [prm, f, s_trnsf] = funct_struct();
-config = funct_config();
 
 PTS_X = config.pts_eval_x;
 PTS_S = config.pts_eval_s;
@@ -59,32 +58,32 @@ if POOL > 0
 
     disp('Computing QSI-SUR results')
     parfor it=1:nb_runs
-        extract_deviation(funct_struct, funct_config, "QSI_m", it, data_dir)
+        extract_deviation (funct_struct, config, "QSI_m", it, data_dir)
     end
 
     disp('Computing Joint-SUR results')
     parfor it=1:nb_runs
-        extract_deviation(funct_struct, funct_config, "joint_m", it, data_dir)
+        extract_deviation (funct_struct, config, "joint_m", it, data_dir)
     end
 
     disp('Computing maximum misclassification results')
     parfor it=1:nb_runs
-        extract_deviation(funct_struct, funct_config, "misclassification", it, data_dir)
+        extract_deviation (funct_struct, config, "misclassification", it, data_dir)
     end
 
     disp('Computing Ranjan results')
     parfor it=1:nb_runs
-        extract_deviation(funct_struct, funct_config, "Ranjan", it, data_dir)
+        extract_deviation (funct_struct, config, "Ranjan", it, data_dir)
     end
 
     disp('Computing random sampling results')
     parfor it=1:nb_runs
-        extract_deviation(funct_struct, funct_config, "random", it, data_dir)
+        extract_deviation (funct_struct, config, "random", it, data_dir)
     end
     
     disp('Computing ECL results')
     parfor it=1:nb_runs
-        extract_deviation_ECL(funct_struct, funct_config, it, data_dir)
+        extract_deviation_ECL (funct_struct, config, it, data_dir)
     end
 
 
@@ -92,32 +91,32 @@ else
 
     disp('Computing QSI-SUR results')
     for it=1:nb_runs
-        extract_deviation(funct_struct, funct_config, "QSI_m", it, data_dir)
+        extract_deviation (funct_struct, config, "QSI_m", it, data_dir)
     end
 
     disp('Computing Joint-SUR results')
     for it=1:nb_runs
-        extract_deviation(funct_struct, funct_config, "joint_m", it, data_dir)
+        extract_deviation (funct_struct, config, "joint_m", it, data_dir)
     end
 
     disp('Computing maximum misclassification results')
     for it=1:nb_runs
-        extract_deviation(funct_struct, funct_config, "misclassification", it, data_dir)
+        extract_deviation (funct_struct, config, "misclassification", it, data_dir)
     end
 
     disp('Computing Ranjan results')
     for it=1:nb_runs
-        extract_deviation(funct_struct, funct_config, "Ranjan", it, data_dir)
+        extract_deviation (funct_struct, config, "Ranjan", it, data_dir)
     end
 
     disp('Computing random sampling results')
     for it=1:nb_runs
-        extract_deviation(funct_struct, funct_config, "random", it, data_dir)
+        extract_deviation (funct_struct, config, "random", it, data_dir)
     end
 
     disp('Computing ECL results')
     for it=1:nb_runs
-        extract_deviation_ECL(funct_struct, funct_config, it, data_dir)
+        extract_deviation_ECL (funct_struct, config, it, data_dir)
     end
 
 end
