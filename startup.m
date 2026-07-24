@@ -12,10 +12,9 @@ addpath (genpath (fullfile (root, 'scripts')));
 % Download contrib-qsi (if needed)
 contrib_qsi = fullfile (root, 'algorithms', 'stk-contrib-qsi');
 if ~ exist (contrib_qsi, 'dir')
-    % commit 4718660
-    % Date: Wed Jul 1 15:01:50 2026 +0200
+    % commit a217469 / date: Fri Jul 24 20:05:35 2026 +0200
     git_clone_dependency ('contrib-qsi', contrib_qsi, ...
-        'https://github.com/stk-kriging/contrib-qsi.git', '4718660');
+        'https://github.com/stk-kriging/contrib-qsi.git', 'a217469');
 end
 
 % Add contrib-qsi to the path
